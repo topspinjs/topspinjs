@@ -29,3 +29,4 @@ node_modules
 
 # TopSpin
 config.json
+dev.sqlite3

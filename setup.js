@@ -37,11 +37,13 @@ function ask(question) {
 console.log("MYSQL server configuration:");
 async.series(questions.map(ask), function (err, answers) {
   var data = JSON.stringify({
-    host     : answers[0]
-  , user     : answers[1]
-  , password : answers[2]
-  , database : answers[3]
-  , charset  : 'utf8'
+    database: {
+      host     : answers[0]
+    , user     : answers[1]
+    , password : answers[2]
+    , database : answers[3]
+    , charset  : 'utf8'
+    }
   }, null, 4);
 
   console.log("Writing configuration file...");

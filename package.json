@@ -30,11 +30,14 @@
   "homepage": "https://github.com/fcsonline/topspinjs",
   "dependencies": {
     "bookshelf": "^0.7.7",
+    "chalk": "^0.5.1",
     "express": "^4.9.5",
     "jade": "^1.7.0",
     "knex": "^0.7.3",
+    "mysql": "^2.5.1",
     "serve-static": "^1.6.3",
     "socket.io": "^1.1.0",
+    "sqlite3": "^3.0.2",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
