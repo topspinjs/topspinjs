@@ -19,6 +19,7 @@ exports.up = function (knex, Promise) {
     .createTable('games', function (table) {
       table.increments('id').primary();
       table.enu('type', ['singles', 'doubles', 'triples']);
+      table.enu('status', ['scheduled', 'playing', 'played']);
       table.dateTime('start');
       table.dateTime('end');
       table.integer('score0');
