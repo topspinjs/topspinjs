@@ -22,8 +22,8 @@ exports.up = function (knex, Promise) {
       table.enu('status', ['scheduled', 'playing', 'played']);
       table.dateTime('start');
       table.dateTime('end');
-      table.integer('score0');
-      table.integer('score1');
+      table.integer('score0').defaultTo(0);
+      table.integer('score1').defaultTo(0);
     })
 
     .createTable('groups', function (table) {
