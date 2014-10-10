@@ -22,6 +22,8 @@ app.libs._ = require('underscore');
 app.libs.io = require('socket.io');
 
 require('./controllers/games')(app);
+require('./controllers/players')(app);
+require('./controllers/groups')(app);
 
 //app.libs.spark = require('sparknode');
 //app.libs.core = new app.libs.spark.Core(settings.sparkCore);
