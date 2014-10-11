@@ -1,12 +1,34 @@
 module.exports = function (app) {
 
-  var bookshelf = app.get('bookshelf')
+  var Promise = app.get('promise')
+    , bookshelf = app.get('bookshelf')
     , Game = require('../models/game');
 
   function getCurrent() {
     return Game(bookshelf)
     .where('status', 'playing')
     .fetch();
+  }
+
+  function getCurrentWithRels(model) {
+    var left
+      , right;
+
+    left = model.left().fetchOne().then(function (model) {
+      return model;
+    });
+
+    right = model.right().fetchOne().then(function (model) {
+      return model;
+    });
+
+    return Promise.all([left, right]).then(function (results) {
+      return app.libs._.extend(model.attributes
+      , {
+        left:  results[0].attributes
+      , right: results[1].attributes
+      });
+    });
   }
 
   app.post('/games', function (req, res) {
@@ -16,7 +38,10 @@ module.exports = function (app) {
   app.get('/games/current', function (req, res) {
     getCurrent()
     .then(function (model) {
-      res.json(model);
+      return getCurrentWithRels(model);
+    })
+    .then(function (modelext) {
+      res.json(modelext);
     });
   });
 

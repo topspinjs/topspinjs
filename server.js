@@ -7,6 +7,7 @@ var path = require('path')
   , environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
   , knexfile = require('./knexfile')
   , config = require('./config.json')
+  , Promise = require('bluebird')
   , knex = require('knex')(knexfile[environment])
   , bookshelf = require('bookshelf')(knex)
   , app;
@@ -14,6 +15,7 @@ var path = require('path')
 app = express();
 app.engine('jade', jade.__express);
 app.use(serveStatic('./ui/public'));
+app.set('promise', Promise);
 app.set('bookshelf', bookshelf);
 app.set('config', config);
 
