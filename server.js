@@ -24,6 +24,7 @@ app.libs._ = require('underscore');
 app.libs.io = require('socket.io');
 
 require('./controllers/games')(app);
+require('./controllers/games.current')(app);
 require('./controllers/players')(app);
 require('./controllers/groups')(app);
 

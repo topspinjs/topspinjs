@@ -40,6 +40,10 @@ module.exports = function (bookshelf) {
 
     winner: function () {
       return this.side({winner: true});
+    },
+
+    increment: function (field) {
+      return this.set(field, this.get(field) + 1);
     }
   });
 };

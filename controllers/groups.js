@@ -1,14 +1,13 @@
 module.exports = function (app) {
 
   var bookshelf = app.get('bookshelf')
-    , Group = require('../models/group');
+    , Group = require('../models/group')(bookshelf);
 
   app.get('/groups', function (req, res) {
-
-    Group(bookshelf)
+    Group
     .fetchAll()
     .then(function (groups) {
-      res.json(groups.toJSON());
+      res.json(groups);
     });
   });
 

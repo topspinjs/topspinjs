@@ -19,7 +19,7 @@ exports.seed = function (knex, Promise) {
       , login: 'malong'
       , password: password('malong')
       , gender: 'male'
-      , play_count: 21874
+      , played_games: 21874
       , created_at: now
       , updated_at: now
       }
@@ -29,7 +29,7 @@ exports.seed = function (knex, Promise) {
       , login: 'timo'
       , password: password('timo')
       , gender: 'male'
-      , play_count: 19383
+      , played_games: 19383
       , created_at: now
       , updated_at: now
       }
@@ -39,7 +39,7 @@ exports.seed = function (knex, Promise) {
       , login: 'zhang'
       , password: password('zhang')
       , gender: 'male'
-      , play_count: 13383
+      , played_games: 13383
       , created_at: now
       , updated_at: now
       }
@@ -49,7 +49,7 @@ exports.seed = function (knex, Promise) {
       , login: 'zhenlong'
       , password: password('zhenlong')
       , gender: 'male'
-      , play_count: 17365
+      , played_games: 17365
       , created_at: now
       , updated_at: now
       }
@@ -87,6 +87,10 @@ exports.seed = function (knex, Promise) {
         id: 4
       , type: 'singles'
       , status: 'scheduled'
+      , score_left: 0
+      , score_right: 0
+      , created_at: now
+      , updated_at: now
       }
     ]).into('games'),
 

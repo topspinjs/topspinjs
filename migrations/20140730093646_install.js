@@ -15,14 +15,14 @@ exports.up = function (knex, Promise) {
       table.string('image');
       table.string('image_win');
       table.string('image_lost');
-      table.integer('play_count').defaultTo(0);
+      table.integer('played_games').defaultTo(0);
       table.timestamps();
     })
 
     .createTable('games', function (table) {
       table.increments('id').primary();
       table.enu('type', ['singles', 'doubles', 'triples']);
-      table.enu('status', ['scheduled', 'playing', 'played']);
+      table.enu('status', ['scheduled', 'playing', 'played', 'missed', 'cancelled']);
       table.dateTime('start');
       table.dateTime('end');
       table.integer('score_left').defaultTo(0);
