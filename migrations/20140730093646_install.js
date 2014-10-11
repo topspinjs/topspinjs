@@ -6,12 +6,15 @@ exports.up = function (knex, Promise) {
 
     .createTable('players', function (table) {
       table.increments('id').primary();
+      table.string('login');
+      table.string('password');
       table.string('rfid');
       table.string('name');
       table.enu('gender', ['male', 'female']);
-      table.string('uri');
-      table.integer('elo').defaultTo(0);
+      table.string('avatar');
       table.string('image');
+      table.string('image_win');
+      table.string('image_lost');
       table.integer('play_count').defaultTo(0);
       table.timestamps();
     })
@@ -22,33 +25,37 @@ exports.up = function (knex, Promise) {
       table.enu('status', ['scheduled', 'playing', 'played']);
       table.dateTime('start');
       table.dateTime('end');
-      table.integer('score0').defaultTo(0);
-      table.integer('score1').defaultTo(0);
+      table.integer('score_left').defaultTo(0);
+      table.integer('score_right').defaultTo(0);
+      table.timestamps();
     })
 
     .createTable('groups', function (table) {
       table.increments('id').primary();
       table.string('name');
-    })
-
-    .createTable('groups_players', function (table) {
-      table.increments('id').primary();
-      table.integer('player_id').unsigned().references('players.id');
-      table.integer('group_id').unsigned().references('groups.id');
+      table.timestamps();
     })
 
     .createTable('games_players', function (table) {
       table.increments('id').primary();
-      table.integer('player_id').unsigned().references('players.id');
+      table.integer('game_id').unsigned(); //.references('games.id');
+      table.integer('player_id').unsigned(); //.references('players.id');
       table.boolean('left');
       table.boolean('winner');
     })
 
     .createTable('games_groups', function (table) {
       table.increments('id').primary();
+      table.integer('game_id').unsigned().references('games.id');
       table.integer('group_id').unsigned().references('groups.id');
       table.boolean('left');
       table.boolean('winner');
+    })
+
+    .createTable('groups_players', function (table) {
+      table.increments('id').primary();
+      table.integer('player_id').unsigned().references('players.id');
+      table.integer('group_id').unsigned().references('groups.id');
     });
 
 };

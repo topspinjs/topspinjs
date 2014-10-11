@@ -3,6 +3,7 @@ module.exports = function (bookshelf) {
 
   return bookshelf.Model.extend({
     tableName: 'groups',
+    hasTimestamps: true,
 
     players: function () {
       return this.belongsToMany(Player, 'groups_players');

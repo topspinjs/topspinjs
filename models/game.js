@@ -4,25 +4,26 @@ module.exports = function (bookshelf) {
 
   return bookshelf.Model.extend({
     tableName: 'games',
+    hasTimestamps: true,
 
     players: function (params) {
-      return this.belongsToMany(Player, 'games_players').query(
+      return this.belongsToMany(Player, 'games_players', 'game_id', 'player_id').query(
         {where: params}
       );
     },
 
     groups: function (params) {
-      return this.belongsToMany(Group, 'games_groups').query(
+      return this.hasMany(Group, 'games_groups').query(
         {where: params}
       );
     },
 
-    singles: function () {
-      return this.get('type') !== 'singles';
+    is_singles: function () {
+      return this.get('type') === 'singles';
     },
 
     side: function (params) {
-      if (this.singles()) {
+      if (this.is_singles()) {
         return this.players(params);
       } else {
         return this.groups(params);
@@ -30,15 +31,15 @@ module.exports = function (bookshelf) {
     },
 
     left: function () {
-      this.side({left: true});
+      return this.side({left: true});
     },
 
     right: function () {
-      this.side({left: false});
+      return this.side({left: false});
     },
 
     winner: function () {
-      this.side({winner: true});
+      return this.side({winner: true});
     }
   });
 };
