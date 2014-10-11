@@ -4,6 +4,8 @@ var path = require('path')
   , express = require('express')
   , jade = require('jade')
   , serveStatic = require('serve-static')
+  , compression = require('compression')
+  , session = require('express-session')
   , environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
   , knexfile = require('./knexfile')
   , config = require('./config.json')
@@ -13,8 +15,15 @@ var path = require('path')
   , app;
 
 app = express();
+
 app.engine('jade', jade.__express);
+
 app.use(serveStatic('./ui/public'));
+app.use(session({ secret: 'foobar', resave: true, saveUninitialized: true }));
+app.use(compression({ threshold: 512 }));
+
+app.set('etag', 'weak');
+
 app.set('promise', Promise);
 app.set('bookshelf', bookshelf);
 app.set('config', config);
