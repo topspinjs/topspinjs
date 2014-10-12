@@ -65,6 +65,8 @@ exports.seed = function (knex, Promise) {
       , end: '2014-3-13 10:24:11'
       , score_left: 9
       , score_right: 11
+      , created_at: now
+      , updated_at: now
       }
     , {
         id: 2
@@ -74,18 +76,31 @@ exports.seed = function (knex, Promise) {
       , end: '2014-10-10 12:25:10'
       , score_left: 21
       , score_right: 13
+      , created_at: now
+      , updated_at: now
       }
     , {
         id: 3
       , type: 'singles'
       , status: 'playing'
       , start: '2014-10-10 12:27:00'
-      , score_left: 4
+      , score_left: 9
       , score_right: 7
+      , created_at: now
+      , updated_at: now
       }
     , {
         id: 4
       , type: 'singles'
+      , status: 'scheduled'
+      , score_left: 0
+      , score_right: 0
+      , created_at: now
+      , updated_at: now
+      }
+    , {
+        id: 5
+      , type: 'doubles'
       , status: 'scheduled'
       , score_left: 0
       , score_right: 0
@@ -134,13 +149,13 @@ exports.seed = function (knex, Promise) {
     knex.insert([
       {
         id: 1
-      , name: 'Group 1'
+      , name: 'Asia'
       , created_at: now
       , updated_at: now
       }
     , {
         id: 2
-      , name: 'Group 2'
+      , name: 'Europe'
       , created_at: now
       , updated_at: now
       }

@@ -7,13 +7,13 @@ module.exports = function (bookshelf) {
     hasTimestamps: true,
 
     players: function (params) {
-      return this.belongsToMany(Player, 'games_players', 'game_id', 'player_id').query(
+      return this.belongsToMany(Player).query(
         {where: params}
       );
     },
 
     groups: function (params) {
-      return this.hasMany(Group, 'games_groups').query(
+      return this.belongsToMany(Group).query(
         {where: params}
       );
     },
