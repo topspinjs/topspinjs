@@ -35,9 +35,9 @@ exports.seed = function (knex, Promise) {
       }
     , {
         id: 3
-      , name: 'Zhang Jike'
-      , login: 'zhang'
-      , password: password('zhang')
+      , name: 'Xu Xin'
+      , login: 'xuxin'
+      , password: password('xuxing')
       , gender: 'male'
       , played_games: 13383
       , created_at: now
@@ -45,9 +45,9 @@ exports.seed = function (knex, Promise) {
       }
     , {
         id: 4
-      , name: 'Zhenlong'
-      , login: 'zhenlong'
-      , password: password('zhenlong')
+      , name: 'Vladimir Samsonov'
+      , login: 'vladimir'
+      , password: password('vladimir')
       , gender: 'male'
       , played_games: 17365
       , created_at: now
@@ -169,11 +169,11 @@ exports.seed = function (knex, Promise) {
       }
     , {
         group_id: 1
-      , player_id: 2
+      , player_id: 3
       }
     , {
         group_id: 2
-      , player_id: 3
+      , player_id: 2
       }
     , {
         group_id: 2
@@ -194,6 +194,16 @@ exports.seed = function (knex, Promise) {
       , group_id: 2
       , left: false
       , winner: false
+      }
+    , {
+        game_id: 5
+      , group_id: 1
+      , left: true
+      }
+    , {
+        game_id: 5
+      , group_id: 2
+      , left: false
       }
     ]).into('games_groups')
   );
