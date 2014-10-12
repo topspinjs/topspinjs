@@ -1,0 +1,11 @@
+{
+    "port": 3000,
+    "secret": "boobar",
+
+    "singles_first_serve": true,
+    "singles_max_points": 11,
+    "singles_change_serve_points": 2,
+    "groups_first_serve": true,
+    "groups_max_points": 21,
+    "groups_change_serve_points": 5
+}

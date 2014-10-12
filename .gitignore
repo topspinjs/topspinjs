@@ -28,5 +28,4 @@ node_modules
 .lock-wscript
 
 # TopSpin
-config.json
 dev.sqlite3
