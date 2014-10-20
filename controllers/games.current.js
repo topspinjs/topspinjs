@@ -5,7 +5,7 @@ module.exports = function (app) {
     , bookshelf = app.get('bookshelf')
     , Game = require('../models/game')(bookshelf);
 
-  app.all('/games/current*', function (req, res, next) {
+  app.all('/api/games/current*', function (req, res, next) {
     Game
     .query(function (qb) {
       qb
@@ -103,10 +103,10 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/games/current', function (req, res) {
+  app.get('/api/games/current', function (req, res) {
   });
 
-  app.post('/games/current/left', function (req, res) {
+  app.post('/api/games/current/left', function (req, res) {
     if (!req.current) {
       return;
     }
@@ -114,7 +114,7 @@ module.exports = function (app) {
     return req.current.increment('score_left').save();
   });
 
-  app.post('/games/current/right', function (req, res) {
+  app.post('/api/games/current/right', function (req, res) {
     if (!req.current) {
       return;
     }

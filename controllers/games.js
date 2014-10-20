@@ -4,7 +4,7 @@ module.exports = function (app) {
     , bookshelf = app.get('bookshelf')
     , Game = require('../models/game')(bookshelf);
 
-  app.get('/games/queue', function (req, res) {
+  app.get('/api/games/queue', function (req, res) {
     Game
     .where('status', 'scheduled')
     .fetchAll()
@@ -13,7 +13,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/games/history', function (req, res) {
+  app.get('/api/games/history', function (req, res) {
     Game
     .query(function (qb) {
       qb.whereNotIn('status', ['scheduled', 'playing']);
