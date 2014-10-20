@@ -1,6 +1,7 @@
 module.exports = function (app) {
 
-  var Promise = app.get('promise')
+  var Promise = require('bluebird')
+    , _ = require('underscore')
     , bookshelf = app.get('bookshelf')
     , Game = require('../models/game')(bookshelf);
 
@@ -87,7 +88,7 @@ module.exports = function (app) {
 
         return Promise.all([left_update, right_update, played, queued]).then(function (results) {
           // Output allways the current game
-          res.json(app.libs._.extend({}, current.attributes, {
+          res.json(_.extend({}, current.attributes, {
             left: current.left.omit('password')
           , right: current.right.omit('password')
           }));

@@ -1,6 +1,6 @@
 module.exports = function (app) {
 
-  var Promise = app.get('promise')
+  var Promise = require('bluebird')
     , bookshelf = app.get('bookshelf')
     , Game = require('../models/game')(bookshelf);
 
