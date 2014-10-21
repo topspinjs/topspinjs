@@ -2,10 +2,29 @@ module.exports = function (app) {
 
   var Promise = require('bluebird')
     , _ = require('underscore')
+    , crypto = require('crypto')
     , bookshelf = app.get('bookshelf')
     , Game = require('../models/game')(bookshelf);
 
-  app.all('/api/games/current*', function (req, res, next) {
+  app.all('/api/games/current/*', function (req, res, next) {
+    var config = app.get('config')
+      , phrase
+      , header
+      , signature;
+
+    if (config.token) {
+      phrase = config.token + req.url;
+      header = req.header('Authorization');
+      signature = crypto.createHash('sha1').update(phrase).digest('hex');
+
+      console.log('Checking signature', signature);
+
+      if (header !== signature) {
+        res.status(409).send('Invalid request signature');
+        return;
+      }
+    }
+
     Game
     .query(function (qb) {
       qb
@@ -96,8 +115,6 @@ module.exports = function (app) {
       });
     })
     .catch(Game.NotFoundError, function () {
-      debugger
-
       res.status(404).send('Not found');
       next();
     });
