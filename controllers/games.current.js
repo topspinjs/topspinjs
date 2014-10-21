@@ -89,8 +89,8 @@ module.exports = function (app) {
         return Promise.all([left_update, right_update, played, queued]).then(function (results) {
           // Output allways the current game
           res.json(_.extend({}, current.attributes, {
-            left: current.left.omit('password')
-          , right: current.right.omit('password')
+            left: current.left.id
+          , right: current.right.id
           }));
         });
       });

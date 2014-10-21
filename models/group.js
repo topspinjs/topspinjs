@@ -6,7 +6,7 @@ module.exports = function (bookshelf) {
     hasTimestamps: true,
 
     players: function () {
-      return this.belongsToMany(Player, 'groups_players');
+      return this.belongsToMany(Player);
     }
   });
 };
