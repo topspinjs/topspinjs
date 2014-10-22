@@ -61,33 +61,33 @@ exports.seed = function (knex, Promise) {
         id: 1
       , type: 'singles'
       , status: 'played'
-      , start: '2014-3-13 10:20:01'
-      , end: '2014-3-13 10:24:11'
+      , start: (+now + 20)
+      , end: (+now + 120)
       , score_left: 9
       , score_right: 11
-      , created_at: now
-      , updated_at: now
+      , created_at: (+now + 20)
+      , updated_at: (+now + 120)
       }
     , {
         id: 2
       , type: 'groups'
       , status: 'played'
-      , start: '2014-10-10 12:20:00'
-      , end: '2014-10-10 12:25:10'
+      , start: (+now + 150)
+      , end: (+now + 250)
       , score_left: 21
       , score_right: 13
-      , created_at: now
-      , updated_at: now
+      , created_at: (+now + 150)
+      , updated_at: (+now + 250)
       }
     , {
         id: 3
       , type: 'singles'
       , status: 'playing'
-      , start: '2014-10-10 12:27:00'
+      , start: (+now + 295)
       , score_left: 9
       , score_right: 7
-      , created_at: now
-      , updated_at: now
+      , created_at: (+now + 275)
+      , updated_at: (+now + 400)
       }
     , {
         id: 4
@@ -95,8 +95,8 @@ exports.seed = function (knex, Promise) {
       , status: 'scheduled'
       , score_left: 0
       , score_right: 0
-      , created_at: now
-      , updated_at: now
+      , created_at: (+now + 220)
+      , updated_at: (+now + 220)
       }
     , {
         id: 5
@@ -104,8 +104,8 @@ exports.seed = function (knex, Promise) {
       , status: 'scheduled'
       , score_left: 0
       , score_right: 0
-      , created_at: now
-      , updated_at: now
+      , created_at: (+now + 250)
+      , updated_at: (+now + 250)
       }
     ]).into('games'),
 
