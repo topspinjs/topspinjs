@@ -21,10 +21,13 @@ module.exports = function (app) {
 
       if (header !== signature) {
         res.status(409).send('Invalid request signature');
-        return;
       }
     }
 
+    next();
+  });
+
+  app.all('/api/games/current*', function (req, res, next) {
     Game
     .query(function (qb) {
       qb
