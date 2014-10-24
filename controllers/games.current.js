@@ -4,6 +4,7 @@ module.exports = function (app) {
     , _ = require('underscore')
     , crypto = require('crypto')
     , bookshelf = app.get('bookshelf')
+    , events = app.get('events')
     , Game = require('../models/game')(bookshelf);
 
   app.all('/api/games/current/*', function (req, res, next) {
@@ -131,6 +132,8 @@ module.exports = function (app) {
       return;
     }
 
+    events.emit('point', {});
+
     return req.current.increment('score_left').save();
   });
 
@@ -138,6 +141,8 @@ module.exports = function (app) {
     if (!req.current) {
       return;
     }
+
+    events.emit('point', {});
 
     return req.current.increment('score_right').save();
   });
