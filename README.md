@@ -19,3 +19,7 @@ knex seed:run
 ```
 node server.js
 ```
+
+More info
+
+http://sidigital.co/blog/lab-notes-hacking-our-ping-pong-table
