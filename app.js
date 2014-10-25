@@ -46,8 +46,8 @@ app.set('events', events);
 app.set('bookshelf', bookshelf);
 app.set('config', config);
 
-require('./controllers/games')(app);
 require('./controllers/games.current')(app);
+require('./controllers/games')(app);
 require('./controllers/players')(app);
 require('./controllers/groups')(app);
 require('./controllers/auth')(app, passport);

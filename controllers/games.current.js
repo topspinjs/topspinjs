@@ -132,9 +132,9 @@ module.exports = function (app) {
       return;
     }
 
-    events.emit('point', {});
-
-    return req.current.increment('score_left').save();
+    return req.current.increment('score_left').save().then(function (model) {
+      events.emit('point', model);
+    });
   });
 
   app.post('/api/games/current/right', function (req, res) {
@@ -142,9 +142,10 @@ module.exports = function (app) {
       return;
     }
 
-    events.emit('point', {});
 
-    return req.current.increment('score_right').save();
+    return req.current.increment('score_right').save().then(function (model) {
+      events.emit('point', model);
+    });
   });
 
 };
