@@ -19,8 +19,8 @@ var Scoreboard = React.createClass({
   },
   render: function () {
     return (<div>
-      <h1>Player left: {this.state.score_left}</h1>
-      <h1>Player right: {this.state.score_right}</h1>
+      <h1>{this.state.score_left}</h1>
+      <h1>{this.state.score_right}</h1>
     </div>)
   }
 });
