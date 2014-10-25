@@ -7,15 +7,15 @@ var Scoreboard = React.createClass({
   getInitialState: function () {
     socket.on('point', this.fetchState);
 
-    this.fetchState();
+    $.getJSON('/api/games/current', (data)=> this.setState(data));
 
     return {
       score_left: 0
     , score_right: 0
     };
   },
-  fetchState: function () {
-    $.getJSON('/api/games/current', (data)=> this.setState(data));
+  fetchState: function (data) {
+    this.setState(data);
   },
   render: function () {
     return (<div>
