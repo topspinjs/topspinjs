@@ -48,7 +48,8 @@
     "sqlite3": "^3.0.2",
     "underscore": "^1.7.0",
     "body-parser": "^1.11.0",
-    "multer": "^0.1.7"
+    "multer": "^0.1.7",
+    "react": "^0.11.2"
   },
   "devDependencies": {
     "async": "^0.9.0",
@@ -61,6 +62,9 @@
     "gulp-sass": "^1.0.0",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
-    "reactify": "^0.14.0"
+    "reactify": "^0.14.0",
+    "gulp-browserify": "^0.5.0",
+    "es6ify": "^1.5.1",
+    "react-jade": "^1.0.0"
   }
 }

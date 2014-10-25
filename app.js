@@ -31,7 +31,7 @@ app.engine('jade', jade.__express);
 app.set('view engine', 'jade');
 
 app.use(helmet());
-app.use(serveStatic('./ui/public'));
+app.use(serveStatic('./public'));
 app.use(session({ secret: 'foobar', resave: true, saveUninitialized: true }));
 app.use(compression({ threshold: 512 }));
 app.use(passport.initialize());
