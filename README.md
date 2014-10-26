@@ -5,6 +5,7 @@ TopSpinJS
 
 ```
 npm install
+bundle install
 ```
 
 ##Setup
