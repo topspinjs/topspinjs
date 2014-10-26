@@ -1,0 +1,37 @@
+@import "flex"
+html
+  height: 100%
+
+.scoreboard-layout
+  background-color: $grey-light
+
+.scoreboard
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1)
+  background-color: white
+  top: $sb_padding
+  right: $sb_padding
+  bottom: $sb_padding
+  left: $sb_padding
+
+.scoreboard__item
+  height: 100%
+.scoreboard__player
+  height: 100%
+.scoreboard__info
+  height: 30%
+  text-align: center
+  font-size: 3rem
+.scoreboard__avatar
+  height: 70%
+  text-align: center
+  img
+    max-width: 100%
+    max-height: 100%
+@media (min-width: $screen-md-min)
+  .scoreboard
+    top: $sb_padding_big_screen
+    right: $sb_padding_big_screen
+    bottom: $sb_padding_big_screen
+    left: $sb_padding_big_screen
+
+

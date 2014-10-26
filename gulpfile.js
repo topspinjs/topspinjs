@@ -3,7 +3,7 @@ var gulp = require('gulp');
 
 // Include Our Plugins
 var jshint = require('gulp-jshint');
-var sass = require('gulp-sass');
+var sass = require('gulp-ruby-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -21,9 +21,17 @@ gulp.task('lint', function () {
 
 // Compile Our Sass
 gulp.task('sass', function () {
-  return gulp.src('scss/*.scss')
+  return gulp.src('./webclient/sass/*.sass')
     .pipe(sass())
-    .pipe(gulp.dest('css'));
+    .pipe(gulp.dest('./public/stylesheets'));
+});
+
+/**
+ * Optimize and move all images from app to dist
+ */
+gulp.task('copy', function () {
+  return gulp.src('./webclient/images/**/*')
+    .pipe(gulp.dest('./public/images'));
 });
 
 // Concatenate & Minify JS
@@ -43,8 +51,8 @@ gulp.task('scripts', function() {
 // Watch Files For Changes
 gulp.task('watch', function () {
   gulp.watch('./webclient/javascripts/**/*.js', ['lint', 'scripts']);
-  //gulp.watch('scss/*.scss', ['sass']);
+  gulp.watch('./webclient/sass/**/*.sass', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['lint', 'copy', 'sass', 'scripts', 'watch']);

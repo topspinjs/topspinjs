@@ -18,10 +18,32 @@ var Scoreboard = React.createClass({
     this.setState(data);
   },
   render: function () {
-    return (<div>
-      <h1>{this.state.score_left}</h1>
-      <h1>{this.state.score_right}</h1>
-    </div>)
+    return (
+      <div className="full-expanded scoreboard-layout">
+        <div className="scoreboard scoreboard--flex absolute-positioned">
+          <div className="scoreboard__item">
+            <div className="scoreboard__player">
+              <div className="scoreboard__info">
+                {this.state.score_left}
+              </div>
+              <div className="scoreboard__avatar">
+                <img src="/images/example/player-1.png" />
+              </div>
+            </div>
+          </div>
+          <div className="scoreboard__item">
+            <div className="scoreboard__player">
+              <div className="scoreboard__info">
+                {this.state.score_right}
+              </div>
+              <div className="scoreboard__avatar">
+                <img src="/images/example/player-2.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 });
 
