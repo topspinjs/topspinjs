@@ -111,10 +111,16 @@ module.exports = function (app) {
 
         return Promise.all([left_update, right_update, played, queued]).then(function (results) {
           // Output allways the current game
-          res.json(_.extend({}, current.attributes, {
+          var output = _.extend({}, current.attributes, {
             left: current.left.id
           , right: current.right.id
-          }));
+          });
+
+          if (req.emit_point) {
+            events.emit('point', output);
+          }
+
+          res.json(output);
         });
       });
     })
@@ -132,9 +138,9 @@ module.exports = function (app) {
       return;
     }
 
-    return req.current.increment('score_left').save().then(function (model) {
-      events.emit('point', model);
-    });
+    req.emit_point = true;
+
+    return req.current.increment('score_left').save();
   });
 
   app.post('/api/games/current/right', function (req, res) {
@@ -142,10 +148,9 @@ module.exports = function (app) {
       return;
     }
 
+    req.emit_point = true;
 
-    return req.current.increment('score_right').save().then(function (model) {
-      events.emit('point', model);
-    });
+    return req.current.increment('score_right').save();
   });
 
 };
