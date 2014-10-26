@@ -27,7 +27,7 @@ var Scoreboard = React.createClass({
                 {this.state.score_left}
               </div>
               <div className="scoreboard__avatar">
-                <img src="/images/example/player-1.png" />
+                <img src="/images/example/player-1.svg" />
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ var Scoreboard = React.createClass({
                 {this.state.score_right}
               </div>
               <div className="scoreboard__avatar">
-                <img src="/images/example/player-2.png" />
+                <img src="/images/example/player-2.svg" />
               </div>
             </div>
           </div>
