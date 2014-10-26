@@ -13,7 +13,7 @@ module.exports = function (app, io) {
 
   events.on('point', function (game) {
     console.log(chalk.green('New point'));
-    io.emit('point', game.toJSON());
+    io.emit('point', game);
   });
 
 };
