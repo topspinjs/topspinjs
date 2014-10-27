@@ -64,10 +64,8 @@
     "gulp-ruby-sass": "^0.7.1",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
-    "reactify": "^0.14.0",
-    "gulp-browserify": "^0.5.0",
-    "es6ify": "^1.5.1",
     "react-jade": "^1.0.0",
-    "react-router": "^0.9.4"
+    "react-router": "^0.9.4",
+    "reactify": "^0.14.0"
   }
 }
