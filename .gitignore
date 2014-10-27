@@ -37,3 +37,4 @@ plugins/*
 # Temp
 tmp/*
 public
+.sass-cache
