@@ -3,6 +3,10 @@
     "secret": "foobar",
     "token": "",
 
+    "domain": "localhost",
+    "facebook_app_id": "_facebook_app_id_",
+    "facebook_app_secret": "_facebook_app_secret_",
+
     "singles_first_serve": true,
     "singles_max_points": 11,
     "singles_change_serve_points": 2,
