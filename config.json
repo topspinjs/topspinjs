@@ -3,9 +3,9 @@
     "secret": "foobar",
     "token": "",
 
-    "domain": "localhost",
-    "facebook_app_id": "_facebook_app_id_",
-    "facebook_app_secret": "_facebook_app_secret_",
+    "domain": "192.168.1.106",
+    "facebook_app_id": "1505114839758756",
+    "facebook_app_secret": "981052512396a9746837dc5001736c4f",
 
     "singles_first_serve": true,
     "singles_max_points": 11,
