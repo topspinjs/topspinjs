@@ -1,4 +1,5 @@
 var environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+  , fs          = require('fs')
   , path        = require('path')
   , net         = require('net')
   , chalk       = require('chalk')
@@ -16,6 +17,7 @@ var environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
   , bookshelf   = require('bookshelf')(knex)
   , events      = require('events')
   , passport    = require('passport')
+  , plugins_path
   , events
   , server
   , app;
@@ -46,6 +48,25 @@ require('./controllers/players')(app);
 require('./controllers/groups')(app);
 require('./controllers/auth')(app, passport);
 require('./controllers/socket')(app, io);
+
+
+plugins_path = './plugins/';
+
+fs.readdir(plugins_path, function (err, files) {
+  if (err) {
+    throw err;
+  }
+
+  files.map(function (file) {
+    return path.join(plugins_path, file);
+  }).filter(function (file) {
+    return fs.statSync(file).isFile();
+  }).forEach(function (file) {
+    var plugin_path = plugins_path + path.basename(file, '.js');
+    console.log("Loading plugin '%s'...",  plugin_path);
+    require(plugin_path)(app);
+  });
+});
 
 app.get('/', function (req, res) {
   res.render('index', { users: [] });
