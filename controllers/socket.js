@@ -17,4 +17,9 @@ module.exports = function (app, io) {
     io.emit('point', {});
   });
 
+  events.on('players.new', function (player) {
+    console.log(chalk.green('Emit new player'));
+    io.emit('players.new', player.toJSON());
+  });
+
 };

@@ -15,6 +15,7 @@ var environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
   , knex        = require('knex')(knexfile[environment])
   , bookshelf   = require('bookshelf')(knex)
   , events      = require('events')
+  , passport    = require('passport')
   , events
   , server
   , app;
@@ -31,6 +32,7 @@ app.use(helmet());
 app.use(serveStatic('./ui/public'));
 app.use(session({ secret: 'foobar', resave: true, saveUninitialized: true }));
 app.use(compression({ threshold: 512 }));
+app.use(passport.initialize());
 
 app.set('etag', 'weak');
 
@@ -42,6 +44,7 @@ require('./controllers/games')(app);
 require('./controllers/games.current')(app);
 require('./controllers/players')(app);
 require('./controllers/groups')(app);
+require('./controllers/auth')(app, passport);
 require('./controllers/socket')(app, io);
 
 app.get('/', function (req, res) {
