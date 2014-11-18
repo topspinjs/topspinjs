@@ -8,7 +8,7 @@ module.exports = function (app, passport) {
     , Player = require('../models/player')(bookshelf)
     , FacebookStrategy = require('passport-facebook').Strategy;
 
-  facebook_url = "http://" + config.domain + ":" + config.port + "/auth/facebook";
+  facebook_url = "http://" + config.domain + "/auth/facebook";
 
   passport.serializeUser(function (user, done) {
     done(null, user);
