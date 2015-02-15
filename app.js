@@ -9,7 +9,6 @@ var environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
   , serveStatic = require('serve-static')
   , compression = require('compression')
   , session     = require('express-session')
-  , io          = require('socket.io')
   , helmet      = require('helmet')
   , knexfile    = require('./knexfile')
   , config      = require('./config.json')
@@ -24,7 +23,6 @@ var environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 app = express();
 server = http.createServer(app);
-io = io.listen(server);
 events = new events.EventEmitter();
 
 app.engine('jade', jade.__express);
@@ -47,7 +45,6 @@ require('./controllers/games.current')(app);
 require('./controllers/players')(app);
 require('./controllers/groups')(app);
 require('./controllers/auth')(app, passport);
-require('./controllers/socket')(app, io);
 
 
 plugins_path = './plugins/';
@@ -72,5 +69,4 @@ app.get('/', function (req, res) {
   res.render('index', { users: [] });
 });
 
-server.listen(config.port);
-console.log(chalk.green('Web Server: Listening on port ' + config.port));
+module.exports = app;

@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app   = require('../app');
+var fs    = require('fs');
+var debug = require('debug')('topspinjs:server');
+var http  = require('http');
+var io    = require('socket.io');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = process.env.PORT || 3000;
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.on('error', onError);
+server.on('listening', onListening);
+server.listen(port);
+
+/**
+ * Listen by socket
+ */
+
+io = io.listen(server);
+require('../controllers/socket')(app, io);
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error('Port ' + port + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error('Port ' + port + ' is already in use');
+      fs.unlinkSync(port);
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  debug('Listening on port ' + server.address().port);
+}
+
+function shutdown() {
+  server.close();
+  process.exit();
+}
+
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);

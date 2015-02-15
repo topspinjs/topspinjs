@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/fcsonline/topspinjs",
   "dependencies": {
+    "debug": "~2.1.1",
     "bluebird": "^2.3.5",
     "bookshelf": "^0.7.7",
     "chalk": "^0.5.1",
