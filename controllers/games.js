@@ -39,4 +39,35 @@ module.exports = function (app) {
       qb.whereNotIn('status', ['scheduled', 'playing']);
     });
   });
+
+  app.post('/api/games', function (req, res) {
+    //TODO validate params
+    var newGame
+      , type
+      , sides
+      , params = req.body;
+
+    type = {singles: 'player', doubles: 'group'}[params.type];
+
+    sides = _.map([params.left, params.right], function (side, index) {
+      var result = {};
+
+      result[type + '_id'] = side;
+      result.left = !index;
+
+      return result;
+    });
+
+    params = _.omit(params, 'left', 'right');
+
+    newGame = Game.forge(params);
+
+    newGame
+      .save()
+      .tap(function () {
+        return newGame.related(type + 's').attach(sides);
+      }).then(function () {
+        res.json(newGame.attributes);
+      });
+  });
 };

@@ -16,6 +16,8 @@ var environment = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
   , bookshelf   = require('bookshelf')(knex)
   , events      = require('events')
   , passport    = require('passport')
+  , bodyParser  = require('body-parser')
+  , multer      = require('multer')
   , plugins_path
   , events
   , server
@@ -33,6 +35,10 @@ app.use(serveStatic('./ui/public'));
 app.use(session({ secret: 'foobar', resave: true, saveUninitialized: true }));
 app.use(compression({ threshold: 512 }));
 app.use(passport.initialize());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer());
 
 app.set('etag', 'weak');
 
