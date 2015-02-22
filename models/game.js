@@ -6,6 +6,10 @@ module.exports = function (bookshelf) {
     tableName: 'games',
     hasTimestamps: true,
 
+    defaults: {
+      'status': 'scheduled'
+    },
+
     players: function (params) {
       return this.belongsToMany(Player).query(
         {where: params}
