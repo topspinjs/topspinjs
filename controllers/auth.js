@@ -28,6 +28,7 @@ module.exports = function (app, passport) {
       Player.forge({
         name: profile.displayName
       , gender: profile.gender
+      , avatar: 'https://graph.facebook.com/' + profile.id + '/picture?width=300&height=300'
       }).save().then(function (player) {
         events.emit('players.new', player);
         return done(null, player);
