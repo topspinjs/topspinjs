@@ -1,4 +1,14 @@
-var Dispatcher = require('flux').Dispatcher;
-var AppDispatcher = new Dispatcher();
+var Dispatcher = require('flux').Dispatcher
+  , dispatcher = new Dispatcher();
 
-module.exports = AppDispatcher;
+/**
+ * handleAction
+ */
+dispatcher.handleAction = function (action) {
+  this.dispatch({
+    actionType: action.actionType
+  , data: action.data
+  });
+};
+
+module.exports = dispatcher;

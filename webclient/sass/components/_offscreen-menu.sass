@@ -1,0 +1,14 @@
+
+.offscreen-menu
+  width: 100%
+  height: 100%
+  position: fixed
+  background: grey
+
+  &.slide-from-bottom
+    transition: top 0.2s
+    &.hide
+      top: 100%
+
+    &.show
+      top: 70%

@@ -32,32 +32,24 @@ var Scoreboard = React.createClass({
   },
   render: function () {
     return (
-      <div className="full-expanded scoreboard-layout">
-        <div className="scoreboard scoreboard--flex absolute-positioned">
-          <div className="scoreboard__item">
-            <div className="scoreboard__player">
-              <div className="scoreboard__info">
-                {this.state.score_left}
-              </div>
-              <div className="scoreboard__name">
-                {this.state.left.name}
-              </div>
-              <div className="scoreboard__avatar">
-                <img src="/images/example/player-1.svg" />
-              </div>
+      <div className="scoreboard full-expanded">
+        <div className="scoreboard__item">
+          <div className="scoreboard__player">
+            <div className="scoreboard__score">
+              {this.state.score_left}
+            </div>
+            <div className="scoreboard__name">
+              {this.state.left.name}
             </div>
           </div>
-          <div className="scoreboard__item">
-            <div className="scoreboard__player">
-              <div className="scoreboard__info">
-                {this.state.score_right}
-              </div>
-              <div className="scoreboard__name">
-                {this.state.right.name}
-              </div>
-              <div className="scoreboard__avatar">
-                <img src="/images/example/player-2.svg" />
-              </div>
+        </div>
+        <div className="scoreboard__item">
+          <div className="scoreboard__player">
+            <div className="scoreboard__score">
+              {this.state.score_right}
+            </div>
+            <div className="scoreboard__name">
+              {this.state.right.name}
             </div>
           </div>
         </div>

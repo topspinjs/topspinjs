@@ -1,33 +1,39 @@
 var AppDispatcher = require('../../dispatcher.js');
-var GamesConstants = require('../../constants/GamesConstants');
 var EventEmitter = require('events').EventEmitter;
 var Backbone = require('backbone');
 var GameModel = require('./model.js');
+var GamesActions = require('../../actions/GamesActions.js');
 
 // Games store is just a backbone collection
 var Collection = Backbone.Collection.extend({
-  url: '/api/games/history'
+  url: '/api/games/queue'
 , model: GameModel
 });
 
 var GamesStore = new Collection();
 
+/**
+ *
+ */
+function scheduleGame(data) {
+  var game = new GameModel({
+    left: data.left
+  , right: data.right
+  });
+
+  game.save().then(GamesActions.load);
+}
+
 // Register dispatcher callback
-AppDispatcher.register(function(payload) {
-  var action = payload.action;
-  var text;
+AppDispatcher.register(function(action) {
+  console.log('action.actionType', action.actionType);
 
-  switch(action.actionType) {
-    case GamesConstants.LOAD_GAMES:
-      GamesStore.fetch();
-      break;
-
-    default:
-      GamesStore.trigger('change');
-      return true;
-  }
+  _.result({
+    "games:load": ()=> GamesStore.fetch()
+  , "games:schedule": ()=> scheduleGame(action.data)
+  }, action.actionType);
 });
 
-GamesStore.fetch();
+GamesActions.load();
 
 module.exports = GamesStore;
