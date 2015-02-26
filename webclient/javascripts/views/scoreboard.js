@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect();
 
 var Scoreboard = React.createClass({
   getInitialState: function () {
