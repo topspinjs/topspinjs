@@ -1,0 +1,13 @@
+// `.scoreboard--flex` all flex props for scoreboard in a class
+// More info: http://css-tricks.com/snippets/css/a-guide-to-flexbox/
+//
+// Styleguide x.x
+.scoreboard--flex
+  display: flex
+  // Then we define the flow direction and if we allow the items to wrap
+  // Remember this is the same as:
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  flex-flow: row wrap
+  .scoreboard__item
+    align-self: center

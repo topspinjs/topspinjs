@@ -9,12 +9,11 @@ module.exports = function (app, io) {
     socket.on('disconnect', function () {
       io.sockets.emit('user disconnected');
     });
-
   });
 
-  events.on('point', function () {
+  events.on('point', function (game) {
     console.log(chalk.green('New point'));
-    io.emit('point', {});
+    io.emit('point', game);
   });
 
   events.on('players.new', function (player) {
