@@ -7,11 +7,13 @@ var GamesActions = require('../actions/GamesActions.js');
 
 var PlayerPickerItem = React.createClass({
   render: function () {
+    var styles = {
+      backgroundImage: 'url(' + this.props.player.avatar + ')'
+    };
+
     return (
-      <li>
+      <li className="playerpicker__item" style={styles}>
         <input type="checkbox" onChange={this.props.onChange}/>
-        -
-        {this.props.player.name}
       </li>
     );
   }
@@ -55,9 +57,9 @@ var PlayerPicker = React.createClass({
     return (
       <div>
         <button onClick={this.onSchedule}>Schedule!</button>
-        <ul>
+        <ul className="playerpicker">
         {this.state.players.map(function (player) {
-          return <PlayerPickerItem player={player} onChange={_.partial(self.onPlayerSelect, player)}/>;
+          return <PlayerPickerItem player={player} onClick={_.partial(self.onPlayerSelect, player)}/>;
         })}
         </ul>
       </div>
