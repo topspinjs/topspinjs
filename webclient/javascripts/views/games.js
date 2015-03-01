@@ -2,11 +2,10 @@
 
 var React = require('react');
 
-var GamesStore = require( '../stores/games/store.js');
-var PlayersStore = require( '../stores/players/store.js');
-var AppDispatcher = require('../dispatcher.js');
+var GamesStore = require('../stores/games/store.js');
+var PlayersStore = require('../stores/players/store.js');
 var GameItem = require('./games/item.js');
-var PlayerPicker = require('./player-picker.js');
+var PlayerPicker = require('./playerpicker/PlayerPicker.js');
 
 /**
  * Games controller view.
@@ -20,12 +19,8 @@ var Games = React.createClass({
   },
   getInitialState: function () {
     return _.extend({
-      openMenu: false
-    , stripeColors: _.shuffle(_.range(10))
+      stripeColors: _.shuffle(_.range(10))
     }, this._getAppState());
-  },
-  openMenu: function () {
-    this.setState({openMenu: true});
   },
   getStripeIndex: function (index) {
     var stripes = this.state.stripeColors;
@@ -36,18 +31,13 @@ var Games = React.createClass({
 
     return (
       <div className='game-board full-expanded'>
-      	<div className='game-list-container'>
-      	  <ul className='game-list'>
-      	  {this.state.games.map(function (game, index) {
-      	    return <GameItem game={game} index={self.getStripeIndex(index)}/>;
-      	  })}
-          <li className='game-item schedule-game' onClick={this.openMenu}><span>+</span></li>
-      	  </ul>
-      	</div>
-      	<div className={'offscreen-menu slide-from-bottom ' + (this.state.openMenu ? 'show' : 'hide')}>
-      	  <h1>Schedule a game</h1>
-      	  <PlayerPicker players={this.state.players}/>
-      	</div>
+        <div className='game-list-container'>
+          <ul className='game-list'>
+          {this.state.games.map(function (game, index) {
+            return <GameItem game={game} index={self.getStripeIndex(index)}/>;
+          })}
+          </ul>
+        </div>
       </div>
     );
   },
