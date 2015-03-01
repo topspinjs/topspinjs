@@ -8,8 +8,7 @@ var PlayerPicker = require('../../views/playerpicker/PlayerPicker.js');
 var GameBuilderSide = React.createClass({
   _getAppState: function () {
     return {
-      players: PlayersStore.toJSON()
-    , player: {}
+      player: {}
     };
   },
   getInitialState: function () {
@@ -37,11 +36,11 @@ var GameBuilderSide = React.createClass({
           <div className="scoreboard__select" onClick={this.openMenu}>+</div>
           <div className="scoreboard__avatar" style={styles}></div>
           <div className="scoreboard__name">
-            {this.state.player.name}
+            {this.state.player.name || "Add Team"}
           </div>
         </div>
         <div className={'playerpicker offscreen-menu slide-from-bottom ' + (this.state.openMenu ? 'show' : 'hide')}>
-          <PlayerPicker players={this.state.players} addTeam={this.addTeam}/>
+          <PlayerPicker addTeam={this.addTeam}/>
         </div>
       </div>
     );
