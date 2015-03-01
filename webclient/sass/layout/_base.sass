@@ -30,6 +30,17 @@ html
   align-items: center;
   flex-direction: column;
 
+.scoreboard__select
+  width: 120px
+  height: 120px
+  border: 8px solid white
+  border-radius: 120px
+  display: block
+  line-height: 120px
+  text-align: center
+  font-size: 80px
+  cursor: pointer
+
 .scoreboard__score
   @include letterpress()
   height: 30%
@@ -62,6 +73,14 @@ html
 .playerpicker
   background: black
 
+  .addteam
+    padding: 5px 100px
+    border-radius: 40px
+    background: cadetblue
+    font-weight: 700
+    font-size: 30px
+    text-transform: uppercase
+
 .playerpicker__item
   border: 10px solid white
   border-radius: 150px
@@ -69,3 +88,6 @@ html
   height: 150px
   background-size: cover
   cursor: pointer
+
+.playerpicker__selected
+  border: 10px solid cadetblue
