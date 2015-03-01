@@ -4,6 +4,14 @@ var React = require('react');
 
 var GamesActions = require('../../actions/GamesActions.js');
 
+var NewPlayerPickerItem = React.createClass({
+  render: function () {
+    return (
+      <li onClick={this.props.onInviteUser} className={"playerpicker__item"}></li>
+    );
+  }
+});
+
 var PlayerPickerItem = React.createClass({
   render: function () {
     var styles = {
@@ -22,7 +30,8 @@ var PlayerPickerItem = React.createClass({
 var PlayerPicker = React.createClass({
   getInitialState: function () {
     return {
-      players: this.props.players
+      players: PlayersStore.toJSON()
+    , inviting: false
     , selected: []
     };
   },
@@ -40,6 +49,14 @@ var PlayerPicker = React.createClass({
   onAddTeam: function () {
     this.props.addTeam(this.state.selected);
   },
+  onInviteUser: function () {
+    this.setState({
+      inviting: !this.state.inviting
+    });
+  },
+  onCreatePlayer: function () {
+    PlayersStore.fetch();
+  },
   render: function () {
     var self = this;
 
@@ -50,10 +67,23 @@ var PlayerPicker = React.createClass({
         {this.state.players.map(function (player) {
           return <PlayerPickerItem player={player} selected={_.contains(self.state.selected, player)} onClick={_.partial(self.onPlayerSelect, player)}/>;
         })}
+        <NewPlayerPickerItem onInviteUser={this.onInviteUser}/>
         </ul>
+        <div className={'newplayer ' + (this.state.inviting ? 'show' : 'hide')}>
+          <img src="/auth/qrcode.png"/>
+        </div>
       </div>
     );
   },
+  _onChange: function () {
+    this.setState({
+      players: PlayersStore.toJSON()
+    });
+  },
+  componentDidMount: function () {
+    socket.on('players.new', this.onCreatePlayer);
+    PlayersStore.on('change sync', this._onChange, this);
+  }
 });
 
 module.exports = PlayerPicker;
