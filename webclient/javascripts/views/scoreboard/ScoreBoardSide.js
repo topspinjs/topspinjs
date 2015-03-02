@@ -10,9 +10,7 @@ var ScoreBoardSide = React.createClass({
     return (
       <div className="scoreboard__item">
         <div className="scoreboard__player">
-          <div className="scoreboard__score">
-            {this.props.score}
-          </div>
+          <div className="scoreboard__score">{this.props.score}</div>
           <div className="scoreboard__avatar" style={styles}></div>
           <div className="scoreboard__name">
             {this.props.player.name}

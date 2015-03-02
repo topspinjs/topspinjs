@@ -33,10 +33,11 @@ var GameBuilderSide = React.createClass({
     return (
       <div className="scoreboard__item">
         <div className="scoreboard__player">
-          <div className="scoreboard__select" onClick={this.openMenu}>+</div>
-          <div className="scoreboard__avatar" style={styles}></div>
+          <div className="scoreboard__score"></div>
+          <div className={"scoreboard__select " + (this.state.player.name ? 'hide' : '')} onClick={this.openMenu}>+</div>
+          <div className={"scoreboard__avatar " + (this.state.player.name ? '' : 'hide')} onClick={this.openMenu} style={styles}></div>
           <div className="scoreboard__name">
-            {this.state.player.name || "Add Team"}
+            {this.state.player.name || "Add Players"}
           </div>
         </div>
         <div className={'playerpicker offscreen-menu slide-from-bottom ' + (this.state.openMenu ? 'show' : 'hide')}>
