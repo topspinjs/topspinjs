@@ -2,7 +2,9 @@
 
 var React = require('react');
 
+var socket = io.connect()
 var GamesActions = require('../../actions/GamesActions.js');
+var PlayersStore = require('../../stores/players/store.js');
 
 var NewPlayerPickerItem = React.createClass({
   render: function () {
