@@ -20,8 +20,8 @@ var GameBuilder = React.createClass({
       <div className="scoreboard full-expanded">
         <GameBuilderSide player={this.state.left}/>
         <div className="scoreboard__separator" onClick={this.onStart}>
-          <span className="scoreboard__vs">vs</span>
-          <span className="scoreboard__start">Start</span>
+          <div><span className="scoreboard__vs">vs</span></div>
+          <div><span className="scoreboard__start">Start</span></div>
         </div>
         <GameBuilderSide player={this.state.right}/>
       </div>

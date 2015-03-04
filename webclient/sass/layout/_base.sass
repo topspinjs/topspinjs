@@ -77,7 +77,19 @@ html
 
 .scoreboard__separator
   background-color: white
-  width: 2px
+  width: 0px
+  display: flex
+  justify-content: center
+  align-items: center;
+  flex-direction: column;
+  z-index: 5
+
+  div
+    flex: 1
+    display: flex
+    justify-content: center
+    align-items: flex-end
+    padding-bottom: 8vh
 
 .scoreboard__vs
   border-radius: 50px
@@ -91,8 +103,6 @@ html
   font-size: 40px
   padding: 15px
   margin: -40px
-  position: relative
-  top: 450px
 
 .scoreboard__start
   border-radius: 50px
@@ -103,10 +113,8 @@ html
   line-height: 50px
   text-align: center
   font-size: 40px
-  padding: 15px 50px
+  padding: 15px 120px
   margin: 0px -150px
-  position: relative
-  top: 800px
   cursor: pointer
 
 .playerpicker

@@ -7,7 +7,9 @@ var ScoreBoardSide = require('./ScoreBoardSide.js');
 
 var ScoreBoard = React.createClass({
   getInitialState: function () {
-    $.getJSON('/api/games/current', this.fetchState);
+    $.getJSON('/api/games/current')
+      .done(this.fetchState)
+      .fail(this.buildGame);
 
     return {
       score_left: 0
@@ -16,6 +18,11 @@ var ScoreBoard = React.createClass({
     , right: {}
     , players: PlayersStore
     };
+  },
+  buildGame: function () {
+    this.setState({
+      status: 'warmup'
+    });
   },
   fetchState: function (data) {
     if (!this.state.players) {
@@ -36,8 +43,8 @@ var ScoreBoard = React.createClass({
   render: function () {
     return (
       <div className="scoreboard full-expanded">
-        <ScoreBoardSide score={this.state.score_left} player={this.state.left}/>
-        <ScoreBoardSide score={this.state.score_right} player={this.state.right}/>
+        <ScoreBoardSide game={this.state} side='left'/>
+        <ScoreBoardSide game={this.state} side='right'/>
       </div>
     );
   },
