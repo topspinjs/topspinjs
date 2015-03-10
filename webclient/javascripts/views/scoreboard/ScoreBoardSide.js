@@ -13,6 +13,10 @@ var ScoreBoardSide = React.createClass({
     };
   },
   openMenu: function () {
+    if (this.props.game.status !== 'warmup') {
+      return;
+    }
+
     this.setState({openMenu: true});
   },
   addTeam: function (selected) {
@@ -24,9 +28,18 @@ var ScoreBoardSide = React.createClass({
   render: function () {
     var styles = {}
       , defined
+      , score
       , player;
 
-    player = this.props.game[this.props.side] || this.state.player;
+    score = this.props.game['score_' + this.props.side];
+    player = this.props.game[this.props.side];
+
+    defined = !_.isEmpty(player);
+
+    if (!defined) {
+      player = this.state.player;
+    }
+
     defined = !_.isEmpty(player);
 
     if (defined) {
@@ -36,11 +49,11 @@ var ScoreBoardSide = React.createClass({
     return (
       <div className="scoreboard__item">
         <div className="scoreboard__player">
-          <div className="scoreboard__score"></div>
+          <div className="scoreboard__score">{score}</div>
           <div className={"scoreboard__select " + (defined ? 'hide' : '')} onClick={this.openMenu}>+</div>
           <div className={"scoreboard__avatar " + (defined ? '' : 'hide')} onClick={this.openMenu} style={styles}></div>
           <div className="scoreboard__name">
-            {player.name || "Add Players"}
+            {defined ? player.name : 'Add Players'}
           </div>
         </div>
         <div className={'playerpicker offscreen-menu slide-from-bottom ' + (this.state.openMenu ? 'show' : 'hide')}>

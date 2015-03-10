@@ -2,7 +2,11 @@
 
 var React = require('react');
 var socket = io.connect();
+
+var GamesActions = require('../../actions/GamesActions.js');
 var PlayersStore = require('../../stores/players/store.js');
+var GroupsStore = require('../../stores/groups/store.js');
+
 var ScoreBoardSide = require('./ScoreBoardSide.js');
 
 var ScoreBoard = React.createClass({
@@ -17,6 +21,7 @@ var ScoreBoard = React.createClass({
     , left: {}
     , right: {}
     , players: PlayersStore
+    , groups: GroupsStore
     };
   },
   buildGame: function () {
@@ -29,10 +34,20 @@ var ScoreBoard = React.createClass({
       return;
     }
 
-    data.left = this.state.players.get(data.left).toJSON();
-    data.right = this.state.players.get(data.right).toJSON();
+    if (this.state.type === 'singles') {
+      data.left = this.state.players.get(data.left).toJSON();
+      data.right = this.state.players.get(data.right).toJSON();
+    } else {
+      data.left = this.state.groups.get(data.left).toJSON();
+      data.right = this.state.groups.get(data.right).toJSON();
+    }
 
     this.setState(data);
+  },
+  onStart: function () {
+    alert(this.state.left);
+
+    GamesActions.schedule(this.state.left, this.state.right);
   },
   onDisconnect: function () {
     // # Blur grey...
@@ -42,8 +57,12 @@ var ScoreBoard = React.createClass({
   },
   render: function () {
     return (
-      <div className="scoreboard full-expanded">
+      <div className={"scoreboard full-expanded scoreboard--gamestatus-" + this.state.status}>
         <ScoreBoardSide game={this.state} side='left'/>
+        <div className="scoreboard__separator" onClick={this.onStart}>
+          <div><span className="scoreboard__vs">vs</span></div>
+          <div><span className="scoreboard__start">Start</span></div>
+        </div>
         <ScoreBoardSide game={this.state} side='right'/>
       </div>
     );

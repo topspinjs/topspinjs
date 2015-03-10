@@ -5,7 +5,6 @@ Backbone.$ = require('jquery');
 
 var React = require('react');
 var ScoreBoard = require('./views/scoreboard/ScoreBoard.js');
-var GameBuilder = require('./views/gamebuilder/GameBuilder.js');
 var Games = require('./views/games.js');
 var Stats = require('./views/stats.js');
 var Router = require('react-router');
@@ -24,7 +23,6 @@ var App = React.createClass({
           <ul>
             <li><Link to='games'>Games</Link></li>
             <li><Link to='scoreboard'>Scoreboard</Link></li>
-            <li><Link to='gamebuilder'>GameBuilder</Link></li>
             <li><Link to='stats'>Stats</Link></li>
           </ul>
         </header>
@@ -38,7 +36,6 @@ var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="games" handler={Games}/>
     <Route name="scoreboard" handler={ScoreBoard}/>
-    <Route name="gamebuilder" handler={GameBuilder}/>
     <Route name="stats" handler={Stats}/>
   </Route>
 );

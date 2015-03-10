@@ -52,6 +52,8 @@ html
   font-size: 20em
   font-weight: 800
   color: white
+  overflow: hidden
+  transition: line-height 0.3s ease;
 
 .scoreboard__name
   text-align: center
@@ -116,6 +118,19 @@ html
   padding: 15px 120px
   margin: 0px -150px
   cursor: pointer
+
+.scoreboard--gamestatus-playing
+  .scoreboard__start
+    display: none
+  .scoreboard__score
+
+.scoreboard--gamestatus-playing
+  .scoreboard__score
+    line-height: 400px;
+
+.scoreboard--gamestatus-warmup
+  .scoreboard__score
+    line-height: 0px;
 
 .playerpicker
   background: black
