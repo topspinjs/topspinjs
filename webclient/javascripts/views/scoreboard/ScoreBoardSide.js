@@ -21,9 +21,9 @@ var ScoreBoardSide = React.createClass({
   },
   addTeam: function (selected) {
     this.setState({
-      player: selected[0] // TODO
-    , openMenu: false
+      openMenu: false
     });
+    this.props.setSide(selected[0]); // TODO
   },
   render: function () {
     var styles = {}

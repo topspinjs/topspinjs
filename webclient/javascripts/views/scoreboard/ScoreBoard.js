@@ -30,24 +30,35 @@ var ScoreBoard = React.createClass({
     });
   },
   fetchState: function (data) {
+    var type_collection;
+
     if (!this.state.players) {
       return;
     }
 
-    if (this.state.type === 'singles') {
-      data.left = this.state.players.get(data.left).toJSON();
-      data.right = this.state.players.get(data.right).toJSON();
+    if (data.type === 'singles') {
+      type_collection = this.state.players;
     } else {
-      data.left = this.state.groups.get(data.left).toJSON();
-      data.right = this.state.groups.get(data.right).toJSON();
+      type_collection = this.state.groups;
     }
+
+    data.left = type_collection.get(data.left).toJSON();
+    data.right = type_collection.get(data.right).toJSON();
 
     this.setState(data);
   },
+  setSideLeft: function (side) {
+    this.setState({
+      left: side
+    });
+  },
+  setSideRight: function (side) {
+    this.setState({
+      right: side
+    });
+  },
   onStart: function () {
-    alert(this.state.left);
-
-    GamesActions.schedule(this.state.left, this.state.right);
+    GamesActions.schedule(this.state.left.id, this.state.right.id);
   },
   onDisconnect: function () {
     // # Blur grey...
@@ -58,12 +69,12 @@ var ScoreBoard = React.createClass({
   render: function () {
     return (
       <div className={"scoreboard full-expanded scoreboard--gamestatus-" + this.state.status}>
-        <ScoreBoardSide game={this.state} side='left'/>
+        <ScoreBoardSide game={this.state} side='left' setSide={this.setSideLeft}/>
         <div className="scoreboard__separator" onClick={this.onStart}>
           <div><span className="scoreboard__vs">vs</span></div>
           <div><span className="scoreboard__start">Start</span></div>
         </div>
-        <ScoreBoardSide game={this.state} side='right'/>
+        <ScoreBoardSide game={this.state} side='right' setSide={this.setSideRight}/>
       </div>
     );
   },
