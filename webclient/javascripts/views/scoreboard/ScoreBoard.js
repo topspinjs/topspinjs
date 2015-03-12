@@ -11,10 +11,6 @@ var ScoreBoardSide = require('./ScoreBoardSide.js');
 
 var ScoreBoard = React.createClass({
   getInitialState: function () {
-    $.getJSON('/api/games/current')
-      .done(this.fetchState)
-      .fail(this.buildGame);
-
     return {
       score_left: 0
     , score_right: 0
@@ -29,7 +25,13 @@ var ScoreBoard = React.createClass({
       status: 'warmup'
     });
   },
-  fetchState: function (data) {
+  fetchState: function () {
+    $.getJSON('/api/games/current')
+      .done(this.stateFetched)
+      .fail(this.buildGame);
+
+  },
+  stateFetched: function (data) {
     var type_collection;
 
     if (!this.state.players) {
@@ -56,6 +58,9 @@ var ScoreBoard = React.createClass({
     this.setState({
       right: side
     });
+  },
+  onCreateGame: function () {
+    this.fetchState();
   },
   onStart: function () {
     GamesActions.schedule(this.state.left.id, this.state.right.id);
@@ -85,9 +90,12 @@ var ScoreBoard = React.createClass({
   },
   componentDidMount: function () {
     socket.on('point', this.fetchState);
+    socket.on('games.new', this.onCreateGame);
     socket.on('disconnect', this.onDisconnect);
 
     PlayersStore.on('change sync', this._onChange, this);
+
+    this.fetchState();
   }
 });
 
