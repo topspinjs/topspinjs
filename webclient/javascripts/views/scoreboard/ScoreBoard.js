@@ -2,12 +2,18 @@
 
 var React = require('react');
 var socket = io.connect();
+
+var GamesActions = require('../../actions/GamesActions.js');
 var PlayersStore = require('../../stores/players/store.js');
+var GroupsStore = require('../../stores/groups/store.js');
+
 var ScoreBoardSide = require('./ScoreBoardSide.js');
 
 var ScoreBoard = React.createClass({
   getInitialState: function () {
-    $.getJSON('/api/games/current', this.fetchState);
+    $.getJSON('/api/games/current')
+      .done(this.fetchState)
+      .fail(this.buildGame);
 
     return {
       score_left: 0
@@ -15,17 +21,44 @@ var ScoreBoard = React.createClass({
     , left: {}
     , right: {}
     , players: PlayersStore
+    , groups: GroupsStore
     };
   },
+  buildGame: function () {
+    this.setState({
+      status: 'warmup'
+    });
+  },
   fetchState: function (data) {
+    var type_collection;
+
     if (!this.state.players) {
       return;
     }
 
-    data.left = this.state.players.get(data.left).toJSON();
-    data.right = this.state.players.get(data.right).toJSON();
+    if (data.type === 'singles') {
+      type_collection = this.state.players;
+    } else {
+      type_collection = this.state.groups;
+    }
+
+    data.left = type_collection.get(data.left).toJSON();
+    data.right = type_collection.get(data.right).toJSON();
 
     this.setState(data);
+  },
+  setSideLeft: function (side) {
+    this.setState({
+      left: side
+    });
+  },
+  setSideRight: function (side) {
+    this.setState({
+      right: side
+    });
+  },
+  onStart: function () {
+    GamesActions.schedule(this.state.left.id, this.state.right.id);
   },
   onDisconnect: function () {
     // # Blur grey...
@@ -35,9 +68,13 @@ var ScoreBoard = React.createClass({
   },
   render: function () {
     return (
-      <div className="scoreboard full-expanded">
-        <ScoreBoardSide score={this.state.score_left} player={this.state.left}/>
-        <ScoreBoardSide score={this.state.score_right} player={this.state.right}/>
+      <div className={"scoreboard full-expanded scoreboard--gamestatus-" + this.state.status}>
+        <ScoreBoardSide game={this.state} side='left' setSide={this.setSideLeft}/>
+        <div className="scoreboard__separator" onClick={this.onStart}>
+          <div><span className="scoreboard__vs">vs</span></div>
+          <div><span className="scoreboard__start">Start</span></div>
+        </div>
+        <ScoreBoardSide game={this.state} side='right' setSide={this.setSideRight}/>
       </div>
     );
   },
