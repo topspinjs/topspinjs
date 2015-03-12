@@ -19,6 +19,7 @@ exports.seed = function (knex, Promise) {
       , login: 'malong'
       , password: password('malong')
       , gender: 'male'
+      , avatar: 'https://graph.facebook.com/malong.fans/picture?width=300&height=300'
       , played_games: 21874
       , created_at: now
       , updated_at: now
@@ -29,6 +30,7 @@ exports.seed = function (knex, Promise) {
       , login: 'timo'
       , password: password('timo')
       , gender: 'male'
+      , avatar: 'https://graph.facebook.com/timoboll/picture?width=300&height=300'
       , played_games: 19383
       , created_at: now
       , updated_at: now
@@ -39,16 +41,18 @@ exports.seed = function (knex, Promise) {
       , login: 'xuxin'
       , password: password('xuxing')
       , gender: 'male'
+      , avatar: 'https://graph.facebook.com/xuxin.fans/picture?width=300&height=300'
       , played_games: 13383
       , created_at: now
       , updated_at: now
       }
     , {
         id: 4
-      , name: 'Vladimir Samsonov'
-      , login: 'vladimir'
-      , password: password('vladimir')
+      , name: 'Dimitrij Ovtcharov'
+      , login: 'dimitrij'
+      , password: password('dimitrij')
       , gender: 'male'
+      , avatar: 'https://graph.facebook.com/DimitrijOvtcharov/picture?width=300&height=300'
       , played_games: 17365
       , created_at: now
       , updated_at: now

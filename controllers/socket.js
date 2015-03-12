@@ -21,4 +21,9 @@ module.exports = function (app, io) {
     io.emit('players.new', player.toJSON());
   });
 
+  events.on('games.new', function (game) {
+    console.log(chalk.green('Emit new game'));
+    io.emit('games.new', game.toJSON());
+  });
+
 };
