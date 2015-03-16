@@ -38,3 +38,6 @@ plugins/*
 tmp/*
 public
 .sass-cache
+
+# Images
+.DS_Store
