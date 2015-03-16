@@ -23,6 +23,8 @@ var ScoreBoard = React.createClass({
   buildGame: function () {
     this.setState({
       status: 'warmup'
+    , left: {}
+    , right: {}
     });
   },
   fetchState: function () {
@@ -59,6 +61,18 @@ var ScoreBoard = React.createClass({
       right: side
     });
   },
+  onGamePoint: function (data) {
+    var self = this;
+
+    if (data.status === 'played') {
+      // Wait some seconds before fetch the next game
+      setTimeout(function() {
+        self.buildGame();
+      }, 2000);
+    } else {
+      this.stateFetched(data);
+    }
+  },
   onCreateGame: function () {
     this.fetchState();
   },
@@ -89,7 +103,7 @@ var ScoreBoard = React.createClass({
     });
   },
   componentDidMount: function () {
-    socket.on('point', this.fetchState);
+    socket.on('point', this.onGamePoint);
     socket.on('games.new', this.onCreateGame);
     socket.on('disconnect', this.onDisconnect);
 

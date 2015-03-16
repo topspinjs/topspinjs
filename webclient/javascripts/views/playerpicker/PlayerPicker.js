@@ -63,9 +63,8 @@ var PlayerPicker = React.createClass({
     var self = this;
 
     return (
-      <div>
-        <button className="addteam" onClick={this.onAddTeam}>Add Team!</button>
-        <ul className="playerpicker">
+      <div className="playerpicker">
+        <ul className="playerpicker--list">
         {this.state.players.map(function (player) {
           return <PlayerPickerItem player={player} selected={_.contains(self.state.selected, player)} onClick={_.partial(self.onPlayerSelect, player)}/>;
         })}
@@ -73,6 +72,9 @@ var PlayerPicker = React.createClass({
         </ul>
         <div className={'newplayer ' + (this.state.inviting ? 'show' : 'hide')}>
           <img src="/auth/qrcode.png"/>
+        </div>
+        <div className='playerpicker--toolbar'>
+          <button onClick={this.onAddTeam}>Add Team!</button>
         </div>
       </div>
     );

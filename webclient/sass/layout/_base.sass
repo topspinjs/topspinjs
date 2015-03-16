@@ -134,14 +134,23 @@ html
 
 .playerpicker
   background: black
+  display: flex
+  flex-direction: column
 
-  .addteam
-    padding: 5px 100px
-    border-radius: 40px
-    background: cadetblue
-    font-weight: 700
-    font-size: 30px
-    text-transform: uppercase
+  .playerpicker--list
+    background: black
+    display: flex
+
+  .playerpicker--toolbar
+    text-align:center
+
+    button
+      padding: 5px 100px
+      border-radius: 40px
+      background: cadetblue
+      font-weight: 700
+      font-size: 30px
+      text-transform: uppercase
 
   .newplayer
     background: white
