@@ -154,12 +154,14 @@ exports.seed = function (knex, Promise) {
       {
         id: 1
       , name: 'Asia'
+      , avatar: '/images/asia.jpg'
       , created_at: now
       , updated_at: now
       }
     , {
         id: 2
       , name: 'Europe'
+      , avatar: '/images/europe.jpg'
       , created_at: now
       , updated_at: now
       }

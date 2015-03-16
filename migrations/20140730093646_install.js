@@ -33,6 +33,7 @@ exports.up = function (knex, Promise) {
     .createTable('groups', function (table) {
       table.increments('id').primary();
       table.string('name');
+      table.string('avatar');
       table.timestamps();
     })
 
