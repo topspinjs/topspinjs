@@ -53,6 +53,7 @@ html
   font-weight: 800
   color: white
   overflow: hidden
+  line-height: 400px
   transition: line-height 0.3s ease;
 
 .scoreboard__name
@@ -110,7 +111,6 @@ html
   border-radius: 50px
   background-color: black
   color: white
-  height: 50px
   display: block
   line-height: 50px
   text-align: center
@@ -118,19 +118,22 @@ html
   padding: 15px 120px
   margin: 0px -150px
   cursor: pointer
+  border: 0
+  -webkit-appearance: none
+
+.scoreboard--gamestatus-played
+  .scoreboard__start
+    display: none
 
 .scoreboard--gamestatus-playing
   .scoreboard__start
     display: none
-  .scoreboard__score
-
-.scoreboard--gamestatus-playing
-  .scoreboard__score
-    line-height: 400px;
 
 .scoreboard--gamestatus-warmup
+  .scoreboard__start
+    display: auto
   .scoreboard__score
-    line-height: 0px;
+    line-height: 0px
 
 .playerpicker
   background: black

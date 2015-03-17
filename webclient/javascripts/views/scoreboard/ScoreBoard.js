@@ -64,13 +64,13 @@ var ScoreBoard = React.createClass({
   onGamePoint: function (data) {
     var self = this;
 
+    this.stateFetched(data);
+
     if (data.status === 'played') {
       // Wait some seconds before fetch the next game
       setTimeout(function() {
         self.buildGame();
       }, 2000);
-    } else {
-      this.stateFetched(data);
     }
   },
   onCreateGame: function () {
@@ -91,7 +91,7 @@ var ScoreBoard = React.createClass({
         <ScoreBoardSide game={this.state} side='left' setSide={this.setSideLeft}/>
         <div className="scoreboard__separator" onClick={this.onStart}>
           <div><span className="scoreboard__vs">vs</span></div>
-          <div><span className="scoreboard__start">Start</span></div>
+          <div><button className="scoreboard__start">Start</button></div>
         </div>
         <ScoreBoardSide game={this.state} side='right' setSide={this.setSideRight}/>
       </div>
