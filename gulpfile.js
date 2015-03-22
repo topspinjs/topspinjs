@@ -54,5 +54,8 @@ gulp.task('watch', function () {
   gulp.watch('./webclient/sass/**/*.sass', ['sass']);
 });
 
+// Build Task
+gulp.task('build', ['lint', 'copy', 'sass', 'scripts']);
+
 // Default Task
 gulp.task('default', ['lint', 'copy', 'sass', 'scripts', 'watch']);
