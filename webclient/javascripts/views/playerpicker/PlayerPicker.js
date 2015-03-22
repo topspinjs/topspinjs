@@ -8,8 +8,15 @@ var PlayersStore = require('../../stores/players/store.js');
 
 var NewPlayerPickerItem = React.createClass({
   render: function () {
+    var styles = {
+      backgroundImage: 'url(/auth/qrcode.png)'
+    };
+
     return (
-      <li onClick={this.props.onInviteUser} className={"playerpicker__item"}></li>
+      <div onClick={this.props.onInviteUser} className={"playerpicker__item"}>
+        <div className="playerpicker__avatar" style={styles}></div>
+        <div className="playerpicker__name">{this.props.player.name}</div>
+      </div>
     );
   }
 });
