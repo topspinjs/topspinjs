@@ -21,7 +21,10 @@ var PlayerPickerItem = React.createClass({
     };
 
     return (
-      <li onClick={this.props.onClick} className={"playerpicker__item " + (this.props.selected ? 'playerpicker__selected' : '')} style={styles}></li>
+      <div onClick={this.props.onClick} className={"playerpicker__item " + (this.props.selected ? 'playerpicker__selected' : '')}>
+        <div className="playerpicker__avatar" style={styles}></div>
+        <div className="playerpicker__name">{this.props.player.name}</div>
+      </div>
     );
   }
 });
@@ -64,16 +67,16 @@ var PlayerPicker = React.createClass({
 
     return (
       <div className="playerpicker">
-        <ul className="playerpicker--list">
+        <div className="playerpicker__list">
         {this.state.players.map(function (player) {
           return <PlayerPickerItem player={player} selected={_.contains(self.state.selected, player)} onClick={_.partial(self.onPlayerSelect, player)}/>;
         })}
         <NewPlayerPickerItem onInviteUser={this.onInviteUser}/>
-        </ul>
+        </div>
         <div className={'newplayer ' + (this.state.inviting ? 'show' : 'hide')}>
           <img src="/auth/qrcode.png"/>
         </div>
-        <div className='playerpicker--toolbar'>
+        <div className='playerpicker__toolbar'>
           <button onClick={this.onAddTeam}>Add Team!</button>
         </div>
       </div>
