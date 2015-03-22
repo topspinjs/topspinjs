@@ -41,7 +41,7 @@ gulp.task('scripts', function() {
     .pipe(
       browserify({
         insertGlobals : true,
-        debug : true, //enable source maps
+        debug : false, //enable source maps
         transform: [reactify, es6ify]
       })
     )
