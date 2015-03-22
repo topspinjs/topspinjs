@@ -15,7 +15,7 @@ var NewPlayerPickerItem = React.createClass({
     return (
       <div onClick={this.props.onInviteUser} className={"playerpicker__item"}>
         <div className="playerpicker__avatar" style={styles}></div>
-        <div className="playerpicker__name">{this.props.player.name}</div>
+        <div className="playerpicker__name">Add new player</div>
       </div>
     );
   }
