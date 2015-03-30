@@ -9,6 +9,7 @@ exports.up = function (knex, Promise) {
       table.string('login');
       table.string('password');
       table.string('rfid');
+      table.string('secret');
       table.string('name');
       table.enu('gender', ['male', 'female']);
       table.string('avatar');

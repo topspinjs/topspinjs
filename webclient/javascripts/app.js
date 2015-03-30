@@ -7,6 +7,7 @@ var React = require('react');
 var ScoreBoard = require('./views/scoreboard/ScoreBoard.js');
 var Games = require('./views/games.js');
 var Stats = require('./views/stats.js');
+var PlayerPin = require('./views/PlayerPin.js');
 var Router = require('react-router');
 var Routes = Router.Routes;
 var Route = Router.Route;
@@ -16,6 +17,9 @@ var Link = Router.Link;
 console.log('RouteHandler', RouteHandler);
 
 var App = React.createClass({
+  onClickPin: function (value) {
+    alert('LOL: ' + value);
+  },
   render: function () {
     return (
       <div>
@@ -27,6 +31,7 @@ var App = React.createClass({
           </ul>
         </header>
         <RouteHandler/>
+        <PlayerPin onConfirm={this.onClickPin} />
       </div>
     );
   }

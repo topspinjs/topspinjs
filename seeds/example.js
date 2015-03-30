@@ -9,6 +9,12 @@ exports.seed = function (knex, Promise) {
     return crypto.createHash('sha1').update(phrase).digest('hex');
   }
 
+  function secret(len) {
+    var key = new Buffer(crypto.randomBytes(Math.ceil(len / 2)).toString('hex')).toString('base64')
+
+    return key.slice(0, len);
+  }
+
   return Promise.join(
 
     // PLAYERS
@@ -18,6 +24,7 @@ exports.seed = function (knex, Promise) {
       , name: 'Ma Long'
       , login: 'malong'
       , password: password('malong')
+      , secret: secret(16)
       , gender: 'male'
       , avatar: 'https://graph.facebook.com/malong.fans/picture?width=300&height=300'
       , played_games: 21874
@@ -29,6 +36,7 @@ exports.seed = function (knex, Promise) {
       , name: 'Timo Boll'
       , login: 'timo'
       , password: password('timo')
+      , secret: secret(16)
       , gender: 'male'
       , avatar: 'https://graph.facebook.com/timoboll/picture?width=300&height=300'
       , played_games: 19383
@@ -40,6 +48,7 @@ exports.seed = function (knex, Promise) {
       , name: 'Xu Xin'
       , login: 'xuxin'
       , password: password('xuxing')
+      , secret: secret(16)
       , gender: 'male'
       , avatar: 'https://graph.facebook.com/xuxin.fans/picture?width=300&height=300'
       , played_games: 13383
@@ -51,6 +60,7 @@ exports.seed = function (knex, Promise) {
       , name: 'Dimitrij Ovtcharov'
       , login: 'dimitrij'
       , password: password('dimitrij')
+      , secret: secret(16)
       , gender: 'male'
       , avatar: 'https://graph.facebook.com/DimitrijOvtcharov/picture?width=300&height=300'
       , played_games: 17365

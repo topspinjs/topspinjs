@@ -77,7 +77,8 @@ var ScoreBoard = React.createClass({
     this.fetchState();
   },
   onStart: function () {
-    GamesActions.schedule(this.state.left.id, this.state.right.id);
+    alert('LOL');
+    // GamesActions.schedule(this.state.left.id, this.state.right.id);
   },
   onDisconnect: function () {
     // # Blur grey...
