@@ -4,17 +4,16 @@
  * Module dependencies.
  */
 
-var app   = require('../app');
-var fs    = require('fs');
+var app = require('../app');
 var debug = require('debug')('topspinjs:server');
-var http  = require('http');
-var io    = require('socket.io');
+var http = require('http');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = process.env.PORT || 3000;
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -27,16 +26,33 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-server.listen(port);
+
+process.on('exit', onExit);
+process.on('SIGINT', onExit);
+process.on('uncaughtException', onExit);
 
 /**
- * Listen by socket
+ * Normalize a port into a number, string, or false.
  */
 
-io = io.listen(server);
-require('../controllers/socket')(app, io);
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -47,15 +63,18 @@ function onError(error) {
     throw error;
   }
 
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error('Port ' + port + ' requires elevated privileges');
+      console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error('Port ' + port + ' is already in use');
-      fs.unlinkSync(port);
+      console.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -68,13 +87,21 @@ function onError(error) {
  */
 
 function onListening() {
-  debug('Listening on port ' + server.address().port);
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
 }
 
-function shutdown() {
-  server.close();
-  process.exit();
-}
+/**
+ * Event listener process "exit" event.
+ */
 
-process.on('SIGINT', shutdown);
-process.on('SIGTERM', shutdown);
+function onExit() {
+  var addr = server.address();
+
+  if (typeof addr === 'string') {
+    fs.unlinkSync(addr);
+  }
+}
