@@ -13,8 +13,6 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var Link = Router.Link;
 
-console.log('RouteHandler', RouteHandler);
-
 var App = React.createClass({
   render: function () {
     return (

@@ -75,4 +75,6 @@ app.get('/', function (req, res) {
   res.render('index', { users: [] });
 });
 
+app.listen(3000);
+
 module.exports = app;

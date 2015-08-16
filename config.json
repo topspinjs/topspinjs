@@ -2,7 +2,7 @@
     "secret": "foobar",
     "token": "",
 
-    "domain": "192.168.1.106:3000",
+    "domain": "localhost:3000",
     "facebook_app_id": "1505114839758756",
     "facebook_app_secret": "981052512396a9746837dc5001736c4f",
 
