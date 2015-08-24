@@ -1,17 +1,28 @@
-/** @jsx React.DOM */
+require('babel/polyfill');
 
-var Backbone = require('backbone');
-Backbone.$ = require('jquery');
+import React from 'react';
 
-var React = require('react');
-var ScoreBoard = require('./views/scoreboard/ScoreBoard.js');
-var Games = require('./views/games.js');
-var Stats = require('./views/stats.js');
-var Router = require('react-router');
-var Routes = Router.Routes;
-var Route = Router.Route;
-var RouteHandler = Router.RouteHandler;
-var Link = Router.Link;
+import {
+  Routes
+, Route
+, RouteHandler
+, Link
+, DefaultRoute
+, run
+} from 'react-router';
+
+import {Provider} from 'react-redux';
+
+import ScoreBoard from './screens/scoreboard/index.jsx';
+import Games from './screens/games.js';
+import Stats from './screens/stats.js';
+
+import store from './store.js';
+import bootstrap from './lib/bootstrap.js';
+
+window.store = store;
+
+//console.log('store', store);
 
 var App = React.createClass({
   render: function () {
@@ -30,6 +41,11 @@ var App = React.createClass({
   }
 });
 
+console.log('App', App);
+console.log('Games', Games);
+console.log('ScoreBoard', ScoreBoard);
+console.log('Stats', Stats);
+
 var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="games" handler={Games}/>
@@ -38,6 +54,13 @@ var routes = (
   </Route>
 );
 
-Router.run(routes, function (Handler) {
-  React.renderComponent(<Handler/>, document.body);
+run(routes, function (Handler) {
+  console.log("document.getElementsByClassName('the-container')[0]", document.getElementsByClassName('the-container')[0]);
+  React.render(
+    <Provider store={store}>
+      {()=> <Handler/>}
+    </Provider>
+    //<Handler/>
+  , document.getElementsByClassName('the-container')[0]
+  );
 });

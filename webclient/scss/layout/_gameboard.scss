@@ -1,0 +1,72 @@
+.game-board {
+  margin: 0 auto;
+}
+
+ul.game-list {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+}
+
+li.game-item {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 2em;
+  &.stripe-1 {
+    background: darken(cadetblue, 25%);
+  }
+  &.stripe-2 {
+    background: darken(cadetblue, 20%);
+  }
+  &.stripe-3 {
+    background: darken(cadetblue, 15%);
+  }
+  &.stripe-4 {
+    background: darken(cadetblue, 10%);
+  }
+  &.stripe-5 {
+    background: darken(cadetblue, 5%);
+  }
+  &.stripe-6 {
+    background: cadetblue;
+  }
+  &.stripe-7 {
+    background: lighten(cadetblue, 5%);
+  }
+  &.stripe-8 {
+    background: lighten(cadetblue, 10%);
+  }
+  &.stripe-9 {
+    background: lighten(cadetblue, 15%);
+  }
+  &.stripe-10 {
+    background: lighten(cadetblue, 20%);
+  }
+  &.schedule-game {
+    flex: 1;
+    justify-content: center;
+    background: white;
+    color: cadetblue;
+    cursor: pointer;
+  }
+  span {
+    display: flex;
+    &.game-player-name {
+      flex: 1;
+      &.game-player--left {
+        justify-content: flex-end;
+      }
+      &.game-player--right {
+        justify-content: flex-start;
+      }
+    }
+    &.vs {
+      width: 3em;
+      justify-content: center;
+    }
+  }
+}

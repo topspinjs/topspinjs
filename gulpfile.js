@@ -50,7 +50,7 @@ gulp.task('scripts', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-  gulp.watch('./webclient/javascripts/**/*.js', ['lint', 'scripts']);
+  //gulp.watch('./webclient/javascripts/**/*.js', ['lint', 'scripts']);
   gulp.watch('./webclient/sass/**/*.sass', ['sass']);
 });
 

@@ -1,4 +1,5 @@
 var React = require('react');
+var socket = io.connect();
 var ScoreBoardSide = require('./ScoreBoardSide.js');
 
 var ScoreBoard = React.createClass({
@@ -71,10 +72,10 @@ var ScoreBoard = React.createClass({
     );
   },
   componentDidMount: function () {
-    //socket.on('point', this.fetchState);
-    //socket.on('disconnect', this.onDisconnect);
+    socket.on('point', this.fetchState);
+    socket.on('disconnect', this.onDisconnect);
 
-    //PlayersStore.on('change sync', this._onChange, this);
+    PlayersStore.on('change sync', this._onChange, this);
   }
 });
 

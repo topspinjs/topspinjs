@@ -1,0 +1,86 @@
+$picker_bg: #49475B;
+
+.player-picker {
+  background: $picker_bg;
+  height: 100%;
+
+  &__header {
+    height: 60px;
+    background: lighten($picker_bg, 20%);
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-height: 35px;
+      display: flex;
+      align-self: center;
+      -webkit-transform: rotate(180deg);
+    }
+
+    &:active {
+      background: lighten($picker_bg, 40%);
+    }
+  }
+
+  &__item {
+    &--selected {
+      border: 10px solid cadetblue;
+    }
+
+    &--new-player {
+      background: white;
+
+      //TODO move to mixin
+      position: relative;
+      &:before {
+        content: "+";
+        font-color: $picker_bg;
+        position: absolute;
+        font-size: 100px;
+        color: black;
+        left: 0px;
+        display: block;
+        width: 150px;
+        text-align: center;
+        height: 150px;
+        line-height: 150px;
+      }
+    }
+
+    margin: 12px;
+    border: 10px solid white;
+    border-radius: 150px;
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  //TODO bem o ke ase
+  &__addteam {
+    padding: 5px 100px;
+    border-radius: 40px;
+    background: cadetblue;
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+  }
+
+  //TODO bem o ke ase
+  &__qrcode {
+    background: white;
+    width: 200px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 40px;
+    margin: auto;
+    &.hide {
+      display: none;
+    }
+    &.show {
+      display: auto;
+    }
+  }
+
+}
+

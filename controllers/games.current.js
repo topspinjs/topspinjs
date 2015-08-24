@@ -125,7 +125,7 @@ module.exports = function (app) {
       });
     })
     .catch(Game.NotFoundError, function () {
-      res.status(404).send('Not found');
+      res.status(404).json({error: 'Not found'});
       next();
     });
   });

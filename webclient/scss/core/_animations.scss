@@ -1,0 +1,25 @@
+@keyframes rotate {
+  0% {
+    -webkit-filter: blur(0px);
+  }
+  50% {
+    -webkit-filter: blur(5px);
+    -webkit-transform: rotateY(1260deg) translate(-10px);
+  }
+
+  60% {
+    -webkit-transform: rotateY(720deg) translate(10px);
+  }
+
+  80% {
+    -webkit-transform: rotateY(360deg) translate(-10px);
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+  }
+}
+
+.rotate {
+  animation: rotate 650ms;
+}

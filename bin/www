@@ -35,6 +35,7 @@ server.listen(port);
  * Listen by socket
  */
 
+//io = io.listen(server, {path: '/table.socket'});
 io = io.listen(server);
 require('../controllers/socket')(app, io);
 
