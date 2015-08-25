@@ -118,33 +118,39 @@ exports.seed = function (knex, Promise) {
       {
         game_id: 1
       , player_id: 1
+      , serve: true
       , left: true
       , winner: false
       }
     , {
         game_id: 1
       , player_id: 2
+      , serve: false
       , left: false
       , winner: true
       }
     , {
         game_id: 3
       , player_id: 3
+      , serve: false
       , left: true
       }
     , {
         game_id: 3
       , player_id: 4
+      , serve: true
       , left: false
       }
     , {
         game_id: 4
       , player_id: 2
+      , serve: false
       , left: true
       }
     , {
         game_id: 4
       , player_id: 4
+      , serve: true
       , left: false
       }
     ]).into('games_players'),
