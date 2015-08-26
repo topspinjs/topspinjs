@@ -13,6 +13,7 @@ module.exports = function (app, io) {
     events.emit('connections.new', {
       ip: socket.handshake.address
     , agent: uaparse(socket.handshake.headers['user-agent'])
+    , total: connections.length
     });
 
     connections.push(socket);
