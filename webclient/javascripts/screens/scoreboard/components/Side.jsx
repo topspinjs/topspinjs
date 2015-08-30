@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-//var PlayerPicker = require('../../views/playerpicker/PlayerPicker.js');
+import Player from 'components/Player';
+
 
 var ScoreBoardSide = React.createClass({
   getInitialState () {
@@ -16,19 +17,9 @@ var ScoreBoardSide = React.createClass({
 
 , renderPlayers() {
 
-    return this.props.players.map((player) => {
-      let style = {};
-      style.backgroundImage = 'url(' + player.avatar + ')';
-
-      return (
-        <div className="scoreboard__player">
-          <div className={"scoreboard__avatar"} style={style}></div>
-          <div className="scoreboard__name">
-            {player.name}
-          </div>
-        </div>
-      );
-    });
+    return this.props.players.map((player) => (
+      <Player player={player}/>
+    ));
   }
 
 , renderGroupName() {

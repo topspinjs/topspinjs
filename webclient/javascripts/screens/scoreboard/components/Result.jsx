@@ -1,15 +1,19 @@
 import React from 'react';
+import Player from 'components/Player';
 
 const GameResult = React.createClass({
   displayName: 'GameResult'
 
-, render() {
-    console.log('winners', this.props.winners);
+, renderWinners(){
+    return this.props.winners.map((player) => (
+      <Player player={player}/>
+    ));
+  }
 
+, render() {
     return (
       <div>
-        And the winner is:
-        {this.props.winners}
+        {this.renderWinners()}
       </div>
     );
   }
