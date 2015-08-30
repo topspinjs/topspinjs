@@ -53,14 +53,15 @@ const Scoreboard = React.createClass({
   //}
 
 , render() {
+    const isDoubles = this.props.game.type === 'doubles';
     return (
       <div className={"scoreboard full-expanded"}>
         <Side
           score={this.props.game.score_left}
           players={this.props.left_side}
-          group={this.props.groupsById[this.props.game.left]}
+          group={isDoubles && this.props.groupsById[this.props.game.left]}
           onAddTeam={_.partial(this.onAddTeam, 'left')}
-          isDoubles={this.props.game.type === 'doubles'}
+          isDoubles={isDoubles}
           side='left'
         />
         <div className="scoreboard__separator" onClick={this.onStart}>
@@ -69,9 +70,9 @@ const Scoreboard = React.createClass({
         <Side
           score={this.props.game.score_right}
           players={this.props.right_side}
-          group={this.props.groupsById[this.props.game.right]}
+          group={isDoubles && this.props.groupsById[this.props.game.right]}
           onAddTeam={_.partial(this.onAddTeam, 'right')}
-          isDoubles={this.props.game.type === 'doubles'}
+          isDoubles={isDoubles}
           side='right'
         />
         {/*

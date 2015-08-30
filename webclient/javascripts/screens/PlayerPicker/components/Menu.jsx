@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react'
+import _ from 'underscore';
 
 var NewPlayerPickerItem = React.createClass({
   render: function () {
@@ -27,8 +28,10 @@ var PlayerPickerItem = React.createClass({
 /**
  * Games controller view.
  */
-var PlayerPicker = React.createClass({
-  getInitialState: function () {
+var Menu = React.createClass({
+  displayName: 'PlayerPicker Menu'
+
+, getInitialState: function () {
     return {
       inviting: false
     , selected: []
@@ -61,7 +64,7 @@ var PlayerPicker = React.createClass({
   render: function () {
     return (
       <div className="player-picker">
-        <div onClick={this.props.onCloseMenu} className="player-picker__header">
+        <div onClick={this.props.toggleMenu} className="player-picker__header">
           <img src="/images/angle-down.svg"/>
         </div>
         <ul className="player-picker__list">
@@ -76,5 +79,4 @@ var PlayerPicker = React.createClass({
   },
 });
 
-module.exports = PlayerPicker;
-
+export default Menu;

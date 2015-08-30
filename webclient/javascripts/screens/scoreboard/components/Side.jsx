@@ -2,8 +2,7 @@ import React from 'react';
 
 import Player from 'components/Player';
 
-
-var ScoreBoardSide = React.createClass({
+const ScoreBoardSide = React.createClass({
   getInitialState () {
     return {rotating: false};
   }
@@ -23,8 +22,6 @@ var ScoreBoardSide = React.createClass({
   }
 
 , renderGroupName() {
-    console.log(this.props.group);
-
     if (!this.props.group) {
       return;
     }
@@ -58,4 +55,3 @@ var ScoreBoardSide = React.createClass({
 });
 
 module.exports = ScoreBoardSide;
-

@@ -13,12 +13,11 @@ import {
 
 import {Provider} from 'react-redux';
 
-import ScoreBoard from './screens/scoreboard/index.jsx';
-import Games from './screens/games.js';
-import Stats from './screens/stats.js';
+import ScoreboardScreen from './screens/scoreboard';
+import PlayerPickerScreen from './screens/PlayerPicker';
 
-import store from './store.js';
-import bootstrap from 'lib/bootstrap.js';
+import store from './store';
+import bootstrap from 'lib/bootstrap';
 
 window.store = store;
 
@@ -28,9 +27,8 @@ var App = React.createClass({
       <div>
         <header>
           <ul>
-            <li><Link to='games'>Games</Link></li>
+            <li><Link to='player-picker'>New game</Link></li>
             <li><Link to='scoreboard'>Scoreboard</Link></li>
-            <li><Link to='stats'>Stats</Link></li>
           </ul>
         </header>
         <RouteHandler/>
@@ -42,9 +40,8 @@ var App = React.createClass({
 bootstrap().then(() => {
   var routes = (
     <Route name="app" path="/" handler={App}>
-      <Route name="games" handler={Games}/>
-      <Route name="scoreboard" handler={ScoreBoard}/>
-      <Route name="stats" handler={Stats}/>
+      <Route name="player-picker" handler={PlayerPickerScreen}/>
+      <Route name="scoreboard" handler={ScoreboardScreen}/>
     </Route>
   );
 

@@ -17,40 +17,40 @@ li.game-item {
   text-transform: uppercase;
   font-size: 2em;
   &.stripe-1 {
-    background: darken(cadetblue, 25%);
+    background: darken($blue, 25%);
   }
   &.stripe-2 {
-    background: darken(cadetblue, 20%);
+    background: darken($blue, 20%);
   }
   &.stripe-3 {
-    background: darken(cadetblue, 15%);
+    background: darken($blue, 15%);
   }
   &.stripe-4 {
-    background: darken(cadetblue, 10%);
+    background: darken($blue, 10%);
   }
   &.stripe-5 {
-    background: darken(cadetblue, 5%);
+    background: darken($blue, 5%);
   }
   &.stripe-6 {
-    background: cadetblue;
+    background: $blue;
   }
   &.stripe-7 {
-    background: lighten(cadetblue, 5%);
+    background: lighten($blue, 5%);
   }
   &.stripe-8 {
-    background: lighten(cadetblue, 10%);
+    background: lighten($blue, 10%);
   }
   &.stripe-9 {
-    background: lighten(cadetblue, 15%);
+    background: lighten($blue, 15%);
   }
   &.stripe-10 {
-    background: lighten(cadetblue, 20%);
+    background: lighten($blue, 20%);
   }
   &.schedule-game {
     flex: 1;
     justify-content: center;
     background: white;
-    color: cadetblue;
+    color: $blue;
     cursor: pointer;
   }
   span {

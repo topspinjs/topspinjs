@@ -5,49 +5,69 @@ import Scoreboard from './components/Scoreboard';
 import GameResult from './components/Result';
 import sidesGetter from 'lib/sidesGetter';
 
+const FINISH_WAIT = 1000;
+
 const ScoreboardScreen = React.createClass({
   displayName: 'Scoreboard Screen'
 
+, getInitialState() {
+    return {finished: false};
+  }
+
 , renderScoreboard() {
-    console.log(this.props.game);
-    if (this.props.game.status !== 'playing') {
+    if (this.state.finished) {
       return;
+    }
+
+    if (this.props.game.status === 'played') {
+      this.showResult();
     }
 
     return (
       <Scoreboard
         game={this.props.game}
-        left_side={this.props.left_side}
-        right_side={this.props.right_side}
+        left_side={this.props.sides.left}
+        right_side={this.props.sides.right}
         players={this.props.players}
         groupsById={this.props.groupsById}
       />
     );
   }
 
-, getWinners() {
+, getWinningSide() {
     const game = this.props.game;
-    const sides = sidesGetter(game, this.props.players, this.props.groups);
-    const winner_side = game.score_left > game.score_right ? 'left' : 'right';
 
-    return sides[winnner_side];
+    return game.score_left > game.score_right ? 'left' : 'right';
+  }
+
+, getWinners() {
+    const sides = this.props.sides;
+    return sides[this.getWinningSide()];
   }
 
 , renderResult() {
-    console.log('result!');
-    if (this.props.game.status !== 'played') {
+    if (!this.state.finished) {
       return;
     }
 
     return (
       <GameResult
+        winningSide={this.getWinningSide()}
         winners={this.getWinners()}
+        leftScore={this.props.game.left_score}
+        rightScore={this.props.game.right_score}
       />
     );
   }
 
+, showResult() {
+    setTimeout(() => this.setState({finished: true}), FINISH_WAIT);
+  }
+
 , render() {
     let content;
+
+
     if (!this.props.game) {
       content = (<div>No game!</div>);
     } else {
@@ -71,17 +91,13 @@ const select = (state) => {
   const [game] = state.games.entities;
   const players = state.players.entities;
   const groupsById = state.groups.byId;
-
   const sides = sidesGetter(game, state.players, state.groups);
-
-  console.log(sides);
 
   return {
     game
-  , left_side: sides.left
-  , right_side: sides.right
   , players
   , groupsById
+  , sides
   }
 }
 
