@@ -1,6 +1,6 @@
 import {
   SYNC_GAMES
-, ADD_GAME
+, ADD_GAME_FULFILLED
 , UPDATE_GAME
 } from '../lib/actionTypes.js';
 
@@ -18,7 +18,7 @@ export default function score(state=initialState, action) {
   case SYNC_GAMES:
     entities = action.games;
     return {entities, byId: _.indexBy(entities, 'id')};
-  case ADD_GAME:
+  case ADD_GAME_FULFILLED:
     entities = [...state.entities, action.game];
     return {entities, byId: _.indexBy(entities, 'id')};
   case UPDATE_GAME:

@@ -1,0 +1,61 @@
+$default-button-size: 80px;
+$button-green: #52D648;
+$button-red: #EF2D56;
+
+button {
+  &:focus {
+    outline: 0;
+  }
+}
+.button--plus {
+  background: white;
+
+  position: relative;
+  &:before {
+    content: "+";
+    /*font-color: $picker_bg;*/
+    position: absolute;
+    color: black;
+    left: 0px;
+    top: 0px;
+    display: block;
+    text-align: center;
+  }
+}
+
+button.round-button {
+
+  &:before {
+    height: $default-button-size;
+    line-height: $default-button-size;
+    width: $default-button-size;
+    font-size: $default-button-size;
+  }
+
+  width: $default-button-size;
+  height: $default-button-size;
+  border-radius: $default-button-size;
+  margin-right: 10px;
+  border-width: 0px;
+
+  &--green {
+    background-color: $button-green;
+    &:active {
+      background-color: lighten($button-green, 20%);
+    }
+  }
+
+  &--red {
+    background-color: $button-red;
+    &:active {
+      background-color: lighten($button-red, 20%);
+    }
+  }
+
+  &--white {
+    &:before {
+      color: lighten(black, 80%);
+    }
+    background-color: white;
+  }
+}

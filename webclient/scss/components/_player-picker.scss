@@ -1,11 +1,18 @@
 $picker_bg: #49475B;
+$header_height: 60px;
+$footer_height: 120px;
+$vignette_height: 50px;
 
 .player-picker {
   background: $picker_bg;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &__header {
-    height: 60px;
+    min-height: $header_height;
+    width: 100%;
     background: lighten($picker_bg, 20%);
     display: flex;
     justify-content: center;
@@ -22,28 +29,46 @@ $picker_bg: #49475B;
     }
   }
 
-  &__item {
-    &--selected {
-      border: 10px solid $blue;
+  &__footer {
+    &__left {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 10px;
     }
 
-    &--new-player {
-      background: white;
+    &__right {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 10px;
+    }
 
-      //TODO move to mixin
-      position: relative;
-      &:before {
-        content: "+";
-        font-color: $picker_bg;
-        position: absolute;
-        font-size: 100px;
-        color: black;
-        left: 0px;
-        display: block;
+    z-index: 10;
+    height: $footer_height;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__list {
+    overflow: auto;
+    margin-top: 0px;
+    padding-top: $vignette_height;
+  }
+
+  &__item {
+    &--disabled {
+      &:after {
+        content: "";
         width: 150px;
-        text-align: center;
         height: 150px;
-        line-height: 150px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        border-radius: 150px;
+        background-color: white;
+        opacity: 0.5;
       }
     }
 
@@ -56,27 +81,51 @@ $picker_bg: #49475B;
     cursor: pointer;
   }
 
-  //TODO bem o ke ase
-  &__addteam {
-    padding: 5px 100px;
-    border-radius: 40px;
-    background: $blue;
-    font-weight: 700;
-    font-size: 30px;
-    text-transform: uppercase;
+  &--picking-left {
+    .player-picker__item {
+      &--selected {
+        border: 10px solid lighten($red, 20%);
+      }
+
+      &--disabled {
+        border: 10px solid lighten($blue, 20%);
+      }
+    }
   }
 
-  //TODO bem o ke ase
+  &--picking-right {
+    .player-picker__item {
+      &--selected {
+        border: 10px solid lighten($blue, 20%);
+      }
+
+      &--disabled {
+        border: 10px solid lighten($red, 20%);
+      }
+    }
+  }
+
   &__qrcode {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     background: white;
+
     width: 200px;
+    height: 200px;
+
     border: 1px solid silver;
     border-radius: 5px;
     padding: 40px;
     margin: auto;
+
     &.hide {
       display: none;
     }
+
     &.show {
       display: auto;
     }

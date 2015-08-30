@@ -4,7 +4,10 @@ const actionTypes = [
 
 , 'UPDATE_GAME'
 , 'SYNC_GAMES'
-, 'ADD_GAME'
+
+, 'ADD_GAME_PENDING'
+, 'ADD_GAME_FULFILLED'
+, 'ADD_GAME_REJECTED'
 
 , 'SYNC_PLAYERS'
 , 'ADD_PLAYER'

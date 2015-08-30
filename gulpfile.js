@@ -30,8 +30,9 @@ gulp.task('scss', function () {
  * Optimize and move all images from app to dist
  */
 gulp.task('copy', function () {
-  return gulp.src('./webclient/images/**/*')
-    .pipe(gulp.dest('./public/images'));
+  return gulp
+          .src('./webclient/{images,fonts}/**/*')
+          .pipe(gulp.dest('./public/'));
 });
 
 // Concatenate & Minify JS

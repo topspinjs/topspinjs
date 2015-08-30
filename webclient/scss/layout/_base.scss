@@ -26,9 +26,11 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   &:first-child {
-    background-color: indianred;
+    background-color: $red;
   }
+
   &:last-child {
     background-color: $blue;
   }
@@ -43,6 +45,12 @@ body {
     }
   }
 }
+
+.scoreboard__addplayer {
+  margin-top: 10px;
+  font-size: 2em;
+}
+
 
 .scoreboard__players {
   display: flex;
@@ -89,6 +97,15 @@ body {
   font-size: 3.5em;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.75);
+  max-width: 130px;
+
+  &--big {
+    font-size: 3.5em;
+  }
+
+  &--small {
+    font-size: 1.5em;
+  }
 }
 
 .scoreboard__avatar {
@@ -154,21 +171,5 @@ body {
   cursor: pointer;
 }
 
-.scoreboard--gamestatus-playing {
-  .scoreboard__start {
-    display: none;
-  }
-  .scoreboard__score {}
-}
-
-.scoreboard--gamestatus-playing {
-  .scoreboard__score {
-    line-height: 400px;
-  }
-}
-
-.scoreboard--gamestatus-warmup {
-  .scoreboard__score {
-    line-height: 0px;
-  }
+.scoreboard__errors {
 }
