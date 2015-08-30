@@ -4,6 +4,7 @@ var reducers = redux.combineReducers({
   score: require('reducers/score.js')
 , players: require('reducers/players.js')
 , games: require('reducers/games.js')
+, groups: require('reducers/groups.js')
 });
 
 var store = redux.createStore(reducers);

@@ -1,15 +1,22 @@
-import {SYNC_PLAYERS, ADD_PLAYER} from '../lib/actionTypes.js';
+import {SYNC_PLAYERS, ADD_PLAYER} from 'lib/actionTypes.js';
+
+import _ from 'underscore';
 
 const initialState = {
   entities: []
+, byId: {}
 };
 
 export default function score(state=initialState, action) {
+  let entities;
+
   switch(action.type) {
   case SYNC_PLAYERS:
-    return {entities: action.players};
+    entities = action.players;
+    return {entities, byId: _.indexBy(entities, 'id')};
   case ADD_PLAYER:
-    return {entities: [...state.players, action.player]}
+    entities = [...state.players, action.player];
+    return {entities, byId: _.indexBy(entities, 'id')};
   default:
     return state;
   }

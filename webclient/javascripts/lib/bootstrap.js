@@ -1,6 +1,7 @@
 import store from 'store';
 import {syncPlayers} from 'actions/players';
 import {updateGame, syncGames} from 'actions/games';
+import {syncGroups} from 'actions/groups';
 
 const process = (res) => (new Promise((resolve, reject) =>
                            res.ok ?
@@ -8,22 +9,41 @@ const process = (res) => (new Promise((resolve, reject) =>
                              reject([res.status, res.statusText])
                          ))
 
-// fetch players
-fetch('/api/players')
-  .then(process)
-  .then(syncPlayers);
+function fetchPlayers () {
+  return fetch('/api/players')
+          .then(process)
+          .then(syncPlayers);
+}
 
-// fetch games
-Promise.all([
-  fetch('api/games/current').then(process)
-, fetch('api/games/queue').then(process)
-]).then(function ([current, queue]) {
-  console.log('sync games!', current, queue);
-  syncGames([...current, ...queue]);
-}).catch(function () {
-  syncGames([]);
-});
+function fetchGames() {
+  return Promise.all([
+    fetch('api/games/current').then(process)
+  , fetch('api/games/queue').then(process)
+  ]).then(function ([current, queue]) {
+    syncGames([current, ...queue]);
+  }).catch(function () {
+    syncGames([]);
+  });
+}
 
-// listen to the sockets
-const socket = io.connect();
-socket.on('point', (data) => updateGame(data));
+function fetchGroups () {
+  return fetch('/api/groups')
+          .then(process)
+          .then(syncGroups);
+}
+
+function setupSockets () {
+  const socket = io.connect();
+  socket.on('point', (data) => updateGame(data));
+}
+
+
+export default function () {
+  setupSockets();
+
+  return Promise.all([
+    fetchGames()
+  , fetchPlayers()
+  , fetchGroups()
+  ]);
+}

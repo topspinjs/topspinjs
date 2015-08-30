@@ -28,6 +28,21 @@ html {
   &:last-child {
     background-color: cadetblue;
   }
+
+  &--doubles {
+    .scoreboard__player {
+      margin-right: 10px;
+
+      & > .scoreboard__name {
+        display: none;
+      }
+    }
+  }
+}
+
+.scoreboard__players {
+  display: flex;
+  flex-direction: row;
 }
 
 .scoreboard__player {

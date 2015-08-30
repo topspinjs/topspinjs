@@ -1,7 +1,7 @@
 import {
-  SYNC_GAMES
-, ADD_GAME
-, UPDATE_GAME
+  SYNC_GROUPS
+, ADD_GROUP
+, UPDATE_GROUP
 } from '../lib/actionTypes.js';
 
 import _ from 'underscore';
@@ -15,18 +15,18 @@ export default function score(state=initialState, action) {
   let entities;
 
   switch(action.type) {
-  case SYNC_GAMES:
-    entities = action.games;
+  case SYNC_GROUPS:
+    entities = action.groups;
     return {entities, byId: _.indexBy(entities, 'id')};
-  case ADD_GAME:
-    entities = [...state.entities, action.game];
+  case ADD_GROUP:
+    entities = [...state.entities, action.group];
     return {entities, byId: _.indexBy(entities, 'id')};
-  case UPDATE_GAME:
-    const index = state.entities.findIndex((game) => game.id === action.game.id)
+  case UPDATE_GROUP:
+    const index = state.entities.findIndex((group) => group.id === action.group.id)
     return {
       entities: [
         ...state.entities.slice(0, index)
-      , action.game
+      , action.group
       , ...state.entities.slice(index + 1)
       ]
     }
@@ -34,4 +34,5 @@ export default function score(state=initialState, action) {
     return state;
   }
 }
+
 

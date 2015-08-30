@@ -18,11 +18,9 @@ import Games from './screens/games.js';
 import Stats from './screens/stats.js';
 
 import store from './store.js';
-import bootstrap from './lib/bootstrap.js';
+import bootstrap from 'lib/bootstrap.js';
 
 window.store = store;
-
-//console.log('store', store);
 
 var App = React.createClass({
   render: function () {
@@ -41,26 +39,21 @@ var App = React.createClass({
   }
 });
 
-console.log('App', App);
-console.log('Games', Games);
-console.log('ScoreBoard', ScoreBoard);
-console.log('Stats', Stats);
-
-var routes = (
-  <Route name="app" path="/" handler={App}>
-    <Route name="games" handler={Games}/>
-    <Route name="scoreboard" handler={ScoreBoard}/>
-    <Route name="stats" handler={Stats}/>
-  </Route>
-);
-
-run(routes, function (Handler) {
-  console.log("document.getElementsByClassName('the-container')[0]", document.getElementsByClassName('the-container')[0]);
-  React.render(
-    <Provider store={store}>
-      {()=> <Handler/>}
-    </Provider>
-    //<Handler/>
-  , document.getElementsByClassName('the-container')[0]
+bootstrap().then(() => {
+  var routes = (
+    <Route name="app" path="/" handler={App}>
+      <Route name="games" handler={Games}/>
+      <Route name="scoreboard" handler={ScoreBoard}/>
+      <Route name="stats" handler={Stats}/>
+    </Route>
   );
+
+  run(routes, function (Handler) {
+    React.render(
+      <Provider store={store}>
+        {()=> <Handler/>}
+      </Provider>
+    , document.getElementsByClassName('the-container')[0]
+    );
+  });
 });

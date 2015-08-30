@@ -1,4 +1,6 @@
-import {LEFT_SCORED, RIGHT_SCORED} from '../lib/actionTypes.js';
+import {LEFT_SCORED, RIGHT_SCORED} from 'lib/actionTypes.js';
+
+import _ from 'underscore';
 
 const initialState = {
   left: 0
@@ -8,11 +10,9 @@ const initialState = {
 export default function score(state=initialState, action) {
   switch(action.type) {
   case RIGHT_SCORED:
-    console.log('right scored');
     return Object.assign({}, {...state}, {right: state.right + 1})
     break;
   case LEFT_SCORED:
-    console.log('left scored');
     return Object.assign({}, {...state}, {left: state.right + 1})
     break;
   default:

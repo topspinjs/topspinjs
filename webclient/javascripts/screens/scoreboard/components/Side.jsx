@@ -5,39 +5,62 @@ var React = require('react');
 var ScoreBoardSide = React.createClass({
   getInitialState () {
     return {rotating: false};
-  },
+  }
 
-  componentWillReceiveProps (nextProps) {
+, componentWillReceiveProps (nextProps) {
     if (this.props.score != nextProps.score) {
       this.setState({rotating: true});
       setTimeout(() => this.setState({rotating: false}), 650);
     }
-  },
+  }
 
-  render() {
-    var styles = {}
-      , defined
-      , score
-      , player;
+, renderPlayers() {
 
-    score = this.props.score;
-    player = this.props.player;
-    defined = !!player;
+    return this.props.players.map((player) => {
+      let style = {};
+      style.backgroundImage = 'url(' + player.avatar + ')';
 
-    if (defined) {
-      styles.backgroundImage = 'url(' + player.avatar + ')';
-    }
-
-    return (
-      <div className="scoreboard__item">
+      return (
         <div className="scoreboard__player">
-          <div className={`scoreboard__score ${this.state.rotating ? 'rotate' : ''}`}>{score}</div>
-          <div className={"scoreboard__select " + (defined ? 'hide' : '')} onClick={this.props.onAddTeam}>+</div>
-          <div className={"scoreboard__avatar " + (defined ? '' : 'hide')} style={styles}></div>
+          <div className={"scoreboard__avatar"} style={style}></div>
           <div className="scoreboard__name">
-            {defined ? player.name : 'Add Players'}
+            {player.name}
           </div>
         </div>
+      );
+    });
+  }
+
+, renderGroupName() {
+    console.log(this.props.group);
+
+    if (!this.props.group) {
+      return;
+    }
+
+    return <div className="scoreboard__name">{this.props.group.name}</div>;
+  }
+
+, getClasses() {
+    let classes = [];
+
+    classes.push('scoreboard__item');
+
+    if (this.props.isDoubles) {
+      classes.push('scoreboard__item--doubles');
+    }
+
+    return classes.join(' ');
+  }
+
+, render() {
+    return (
+      <div className={this.getClasses()}>
+        <div className={`scoreboard__score ${this.state.rotating ? 'rotate' : ''}`}>{this.props.score}</div>
+        <div className="scoreboard__players">
+          {this.renderPlayers()}
+        </div>
+        {this.renderGroupName()}
       </div>
     );
   }

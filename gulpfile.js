@@ -20,8 +20,8 @@ gulp.task('lint', function () {
 });
 
 // Compile Our Sass
-gulp.task('sass', function () {
-  return gulp.src('./webclient/sass/*.sass')
+gulp.task('scss', function () {
+  return gulp.src('./webclient/scss/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('./public/stylesheets'));
 });
@@ -51,8 +51,8 @@ gulp.task('scripts', function() {
 // Watch Files For Changes
 gulp.task('watch', function () {
   //gulp.watch('./webclient/javascripts/**/*.js', ['lint', 'scripts']);
-  gulp.watch('./webclient/sass/**/*.sass', ['sass']);
+  gulp.watch('./webclient/scss/**/*.scss', ['scss']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'copy', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['lint', 'copy', 'scss', 'scripts', 'watch']);
