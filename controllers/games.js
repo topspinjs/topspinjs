@@ -9,24 +9,17 @@ module.exports = function (app) {
   function searchGames(res, filter) {
     return Game
     .query(filter)
-    .fetchAll()
-    .then(function (collection) {
-      return collection.mapThen(function (game) {
-        return Promise.all([game.left().fetchOne(), game.right().fetchOne()]).then(function (results) {
-          game.left = results[0];
-          game.right = results[1];
-          return game;
-        });
-      }).then(function (results) {
-        var output = results.map(function (game) {
-          return (_.extend({}, game.attributes, {
-            left: game.left.id
-          , right: game.right.id
-          }));
-        });
-
-        return output;
+    .fetchAll({withRelated: ['left', 'right']})
+    .then(function (results) {
+      debugger
+      var output = results.map(function (game) {
+        return (_.extend({}, game.attributes, {
+        //  left: game.sides.left.id
+        //  , right: game.sides.right.id
+        }));
       });
+
+      return output;
     });
   }
 
@@ -40,7 +33,7 @@ module.exports = function (app) {
 
   app.get('/api/games/history', function (req, res) {
     searchGames(res, function (qb) {
-      qb.whereNotIn('status', ['scheduled', 'playing']);
+      qb.whereNotIn('status', ['scheduled', 'playing', 'warmup']);
     }).then(function (output) {
       res.json(output);
     });
@@ -75,7 +68,7 @@ module.exports = function (app) {
     params = _.omit(params, 'left', 'right');
 
     params = _.extend(params, {
-      status: 'playing'
+      status: 'warmup'
     });
 
     newGame = Game.forge(params);
