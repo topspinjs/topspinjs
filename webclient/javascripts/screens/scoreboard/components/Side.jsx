@@ -16,6 +16,8 @@ const ScoreBoardSide = React.createClass({
 
 , renderPlayers() {
 
+    debugger;
+
     return this.props.players.map((player) => (
       <Player player={player}/>
     ));

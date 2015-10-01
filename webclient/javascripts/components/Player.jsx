@@ -11,13 +11,13 @@ const Player = React.createClass({
 
 , render() {
     let style = {};
-    style.backgroundImage = `url('${this.props.player.avatar}')`;
+    //style.backgroundImage = `url('${this.props.player.avatar}')`;
 
     return (
       <div className="scoreboard__player">
         <div className={"scoreboard__avatar"} style={style}></div>
         <div className={`scoreboard__name scoreboard__name--${this.props.nameSize}`}>
-          {this.props.player.name}
+          paco
         </div>
       </div>
     );

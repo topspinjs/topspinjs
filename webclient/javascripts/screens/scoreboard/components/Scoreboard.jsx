@@ -6,6 +6,9 @@ const Scoreboard = React.createClass({
 
 , render() {
     const isDoubles = this.props.game.type === 'doubles';
+
+    console.log('this.props.left_side', this.props.left_side);
+
     return (
       <div className={"scoreboard full-expanded"}>
         <Side

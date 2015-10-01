@@ -23,6 +23,8 @@ const ScoreboardScreen = React.createClass({
       this.showResult();
     }
 
+    console.log('this.props.players', this.props.players);
+
     return (
       <Scoreboard
         game={this.props.game}
@@ -92,6 +94,8 @@ const select = (state) => {
   const players = state.players.entities;
   const groupsById = state.groups.byId;
   const sides = sidesGetter(game, state.players, state.groups);
+
+  console.log('players', players);
 
   return {
     game
