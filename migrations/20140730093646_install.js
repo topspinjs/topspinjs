@@ -22,7 +22,7 @@ exports.up = function (knex, Promise) {
     .createTable('games', function (table) {
       table.increments('id').primary();
       table.enu('type', ['singles', 'doubles', 'triples']);
-      table.enu('status', ['scheduled', 'playing', 'played', 'missed', 'cancelled']);
+      table.enu('status', ['scheduled', 'playing', 'played', 'missed', 'cancelled', 'warmup']);
       table.dateTime('start');
       table.dateTime('end');
       table.integer('score_left').defaultTo(0);
@@ -33,6 +33,7 @@ exports.up = function (knex, Promise) {
     .createTable('groups', function (table) {
       table.increments('id').primary();
       table.string('name');
+      table.string('avatar');
       table.timestamps();
     })
 
@@ -40,6 +41,7 @@ exports.up = function (knex, Promise) {
       table.increments('id').primary();
       table.integer('game_id').unsigned(); //.references('games.id');
       table.integer('player_id').unsigned(); //.references('players.id');
+      table.boolean('serve');
       table.boolean('left');
       table.boolean('winner');
     })
@@ -48,6 +50,7 @@ exports.up = function (knex, Promise) {
       table.increments('id').primary();
       table.integer('game_id').unsigned().references('games.id');
       table.integer('group_id').unsigned().references('groups.id');
+      table.boolean('serve').defaultTo(false);
       table.boolean('left');
       table.boolean('winner');
     })

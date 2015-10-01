@@ -93,24 +93,24 @@ exports.seed = function (knex, Promise) {
       , created_at: (+now + 275)
       , updated_at: (+now + 400)
       }
-    , {
-        id: 4
-      , type: 'singles'
-      , status: 'scheduled'
-      , score_left: 0
-      , score_right: 0
-      , created_at: (+now + 220)
-      , updated_at: (+now + 220)
-      }
-    , {
-        id: 5
-      , type: 'doubles'
-      , status: 'scheduled'
-      , score_left: 0
-      , score_right: 0
-      , created_at: (+now + 250)
-      , updated_at: (+now + 250)
-      }
+    // , {
+    //     id: 4
+    //   , type: 'singles'
+    //   , status: 'scheduled'
+    //   , score_left: 0
+    //   , score_right: 0
+    //   , created_at: (+now + 220)
+    //   , updated_at: (+now + 220)
+    //   }
+    // , {
+    //     id: 5
+    //   , type: 'doubles'
+    //   , status: 'scheduled'
+    //   , score_left: 0
+    //   , score_right: 0
+    //   , created_at: (+now + 250)
+    //   , updated_at: (+now + 250)
+    //   }
     ]).into('games'),
 
     // GAME PLAYERS
@@ -118,33 +118,39 @@ exports.seed = function (knex, Promise) {
       {
         game_id: 1
       , player_id: 1
+      , serve: true
       , left: true
       , winner: false
       }
     , {
         game_id: 1
       , player_id: 2
+      , serve: false
       , left: false
       , winner: true
       }
     , {
         game_id: 3
       , player_id: 3
+      , serve: false
       , left: true
       }
     , {
         game_id: 3
       , player_id: 4
+      , serve: true
       , left: false
       }
     , {
         game_id: 4
       , player_id: 2
+      , serve: false
       , left: true
       }
     , {
         game_id: 4
       , player_id: 4
+      , serve: true
       , left: false
       }
     ]).into('games_players'),
@@ -154,12 +160,14 @@ exports.seed = function (knex, Promise) {
       {
         id: 1
       , name: 'Asia'
+      , avatar: '/images/asia.jpg'
       , created_at: now
       , updated_at: now
       }
     , {
         id: 2
       , name: 'Europe'
+      , avatar: '/images/europe.jpg'
       , created_at: now
       , updated_at: now
       }

@@ -42,7 +42,7 @@ gulp.task('scripts', function() {
     .pipe(
       browserify({
         insertGlobals : true,
-        debug : true, //enable source maps
+        debug : false, //enable source maps
         transform: [reactify, es6ify]
       })
     )
@@ -54,6 +54,9 @@ gulp.task('watch', function () {
   //gulp.watch('./webclient/javascripts/**/*.js', ['lint', 'scripts']);
   gulp.watch('./webclient/scss/**/*.scss', ['scss']);
 });
+
+// Build Task
+gulp.task('build', ['lint', 'copy', 'sass', 'scripts']);
 
 // Default Task
 gulp.task('default', ['lint', 'copy', 'scss', 'scripts', 'watch']);

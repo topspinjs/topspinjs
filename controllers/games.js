@@ -3,29 +3,23 @@ module.exports = function (app) {
   var Promise = require('bluebird')
     , _ = require('underscore')
     , bookshelf = app.get('bookshelf')
+    , events = app.get('events')
     , Game = require('../models/game')(bookshelf);
 
   function searchGames(res, filter) {
     return Game
     .query(filter)
-    .fetchAll()
-    .then(function (collection) {
-      return collection.mapThen(function (game) {
-        return Promise.all([game.left().fetchOne(), game.right().fetchOne()]).then(function (results) {
-          game.left = results[0];
-          game.right = results[1];
-          return game;
-        });
-      }).then(function (results) {
-        var output = results.map(function (game) {
-          return (_.extend({}, game.attributes, {
-            left: game.left.id
-          , right: game.right.id
-          }));
-        });
-
-        return output;
+    .fetchAll({withRelated: ['left', 'right']})
+    .then(function (results) {
+      debugger
+      var output = results.map(function (game) {
+        return (_.extend({}, game.attributes, {
+        //  left: game.sides.left.id
+        //  , right: game.sides.right.id
+        }));
       });
+
+      return output;
     });
   }
 
@@ -39,7 +33,7 @@ module.exports = function (app) {
 
   app.get('/api/games/history', function (req, res) {
     searchGames(res, function (qb) {
-      qb.whereNotIn('status', ['scheduled', 'playing']);
+      qb.whereNotIn('status', ['scheduled', 'playing', 'warmup']);
     }).then(function (output) {
       res.json(output);
     });
@@ -60,7 +54,6 @@ module.exports = function (app) {
       , sides
       , params = req.body;
 
-    console.log('params', params);
     type = {singles: 'player', doubles: 'group'}[params.type];
 
     sides = _.map([params.left, params.right], function (side, index) {
@@ -74,14 +67,18 @@ module.exports = function (app) {
 
     params = _.omit(params, 'left', 'right');
 
+    params = _.extend(params, {
+      status: 'warmup'
+    });
+
     newGame = Game.forge(params);
 
     newGame
       .save()
       .tap(function () {
-        console.log(newGame.related(type + 's'));
         return newGame.related(type + 's').attach(sides);
       }).then(function () {
+        events.emit('games.new', newGame);
         res.json(newGame.attributes);
       });
   });

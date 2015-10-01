@@ -31,10 +31,10 @@ node_modules
 # TopSpin
 dev.sqlite3
 
-# Plugins
-plugins/*
-
 # Temp
 tmp/*
 public
 .sass-cache
+
+# Images
+.DS_Store
