@@ -10,8 +10,8 @@ module.exports = function (app) {
 
   function currentGame (game, workflow) {
     var output = _.extend({}, game.attributes, {
-      left: game.left.id
-    , right: game.right.id
+      left: game.sides.left.id
+    , right: game.sides.right.id
     });
 
     if (game.get('status') === 'playing') {
