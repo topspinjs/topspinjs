@@ -93,24 +93,24 @@ exports.seed = function (knex, Promise) {
       , created_at: (+now + 275)
       , updated_at: (+now + 400)
       }
-    , {
-        id: 4
-      , type: 'singles'
-      , status: 'scheduled'
-      , score_left: 0
-      , score_right: 0
-      , created_at: (+now + 220)
-      , updated_at: (+now + 220)
-      }
-    , {
-        id: 5
-      , type: 'doubles'
-      , status: 'scheduled'
-      , score_left: 0
-      , score_right: 0
-      , created_at: (+now + 250)
-      , updated_at: (+now + 250)
-      }
+    // , {
+    //     id: 4
+    //   , type: 'singles'
+    //   , status: 'scheduled'
+    //   , score_left: 0
+    //   , score_right: 0
+    //   , created_at: (+now + 220)
+    //   , updated_at: (+now + 220)
+    //   }
+    // , {
+    //     id: 5
+    //   , type: 'doubles'
+    //   , status: 'scheduled'
+    //   , score_left: 0
+    //   , score_right: 0
+    //   , created_at: (+now + 250)
+    //   , updated_at: (+now + 250)
+    //   }
     ]).into('games'),
 
     // GAME PLAYERS
