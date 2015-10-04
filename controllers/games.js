@@ -11,7 +11,6 @@ module.exports = function (app) {
     .query(filter)
     .fetchAll({withRelated: ['left', 'right']})
     .then(function (results) {
-      debugger
       var output = results.map(function (game) {
         return (_.extend({}, game.attributes, {
         //  left: game.sides.left.id
