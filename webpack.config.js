@@ -1,15 +1,13 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://0.0.0.0:4001'
-  , 'webpack/hot/only-dev-server'
-  , './webclient/javascripts/app.js'
-  , './webclient/scss/app.scss'
-  ]
+  entry: {
+    'bundle': './webclient/javascripts/app.js'
+  , 'fetch': './webclient/javascripts/vendor/fetch.js'
+  }
 , output: {
     path: __dirname + '/public/js'
-  , filename: 'bundle.js'
+  , filename: '[name].js'
   , publicPath: '/static/'
   }
 , resolve: {
@@ -23,7 +21,7 @@ module.exports = {
   ]
 , module: {
     loaders: [
-      {test: /.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel?optional=runtime']}
+      {test: /.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel?optional[]=runtime']}
     , {test: /\.scss$/, loader: 'style!css!sass?outputStyle=expanded'}
     ]
   }
