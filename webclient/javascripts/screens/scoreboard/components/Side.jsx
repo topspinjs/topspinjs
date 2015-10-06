@@ -28,6 +28,21 @@ const ScoreBoardSide = React.createClass({
     return <div className="scoreboard__name">{this.props.group.name}</div>;
   }
 
+, renderServing() {
+    console.log('this.props.serving', this.props.serving);
+    console.log('this.props.side', this.props.side);
+
+    if (!this.props.serving) {
+      return;
+    }
+
+    return (
+      <div className="scoreboard__serving-wrapper">
+        <div className="scoreboard__serving bounce"></div>
+      </div>
+    )
+  }
+
 , getClasses() {
     let classes = [];
 
@@ -43,7 +58,10 @@ const ScoreBoardSide = React.createClass({
 , render() {
     return (
       <div className={this.getClasses()}>
-        <div className={`scoreboard__score ${this.state.rotating ? 'rotate' : ''}`}>{this.props.score}</div>
+        {this.renderServing()}
+        <div className={`scoreboard__score ${this.state.rotating ? 'rotate' : ''}`}>
+            {this.props.score}
+        </div>
         <div className="scoreboard__players">
           {this.renderPlayers()}
         </div>

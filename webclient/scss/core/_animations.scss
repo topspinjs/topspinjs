@@ -20,6 +20,41 @@
   }
 }
 
+
+@keyframes blink {
+  0% {
+    opacity: 0.0;
+  }
+
+  50% {
+    opacity: 1.0;
+  }
+
+  100% {
+    opacity: 0.0;
+  }
+}
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+	40% {
+    transform: translateY(-30px);
+  }
+	60% {
+    transform: translateY(-15px);
+  }
+}
+
 .rotate {
   animation: rotate 650ms;
+}
+
+.blink {
+  animation: blink 3s steps(5, start) infinite;
+}
+
+.bounce {
+  animation: bounce 2s infinite;
 }

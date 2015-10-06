@@ -23,8 +23,6 @@ const ScoreboardScreen = React.createClass({
       this.showResult();
     }
 
-    console.log('this.props.players', this.props.players);
-
     return (
       <Scoreboard
         game={this.props.game}

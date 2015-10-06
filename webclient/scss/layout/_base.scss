@@ -126,6 +126,27 @@ body {
   }
 }
 
+.scoreboard__decide-serve {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+.scoreboard__serving-wrapper {
+  height: 0px;
+}
+
+.scoreboard__serving {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+}
+
 .scoreboard__separator {
   background-color: white;
   width: 0px;

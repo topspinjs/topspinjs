@@ -6,7 +6,6 @@ export default function (game, players, groups) {
   }
 
   if (game.type === 'doubles') {
-    debugger;
     let left_group = groups.byId[game.left]
       , right_group = groups.byId[game.right]
 
@@ -15,7 +14,6 @@ export default function (game, players, groups) {
     , right: right_group.members.map(getPlayer)
     }
   } else {
-    debugger;
     return {
       left: [getPlayer(game.left)]
     , right: [getPlayer(game.right)]
