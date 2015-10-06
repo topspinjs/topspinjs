@@ -58,6 +58,8 @@ var Menu = React.createClass({
           className={'player-picker__qrcode ' + (this.state.inviting ? 'animated bounceIn zoomIn' : 'hide animated bounceOut zoomOut')}
           onClick={this.onInviteUser}
         >
+          <h1>Sign in with Facebook</h1>
+          <p>TopspinJS provides a built-in QR code to sign in with the simplest way ever. You can flash your QR code with your phone, accept the authorization request and you will be added as a new member for the current TopspinJS instance</p>
           <img src="/auth/qrcode.png" />
         </div>
 

@@ -114,13 +114,32 @@ $vignette_height: 50px;
     margin: auto;
     background: white;
 
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 160px;
 
     border: 1px solid silver;
     border-radius: 5px;
     padding: 40px;
     margin: auto;
+
+    h1 {
+      float: right;
+      color: black;
+      font-family: 'Helvetica';
+      font-size: 25px;
+      margin-top: 0;
+    }
+
+    p {
+      float: right;
+      color: black;
+      width: 310px;
+      text-transform: none;
+    }
+
+    img {
+      width: 165px;
+    }
 
     &.hide {
       display: none;
