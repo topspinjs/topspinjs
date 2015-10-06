@@ -1,4 +1,5 @@
 require('babel/polyfill');
+require('../scss/app.scss');
 
 import React from 'react';
 
