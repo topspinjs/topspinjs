@@ -1,5 +1,5 @@
 import store from 'store';
-import {syncPlayers} from 'actions/players';
+import {addPlayer, syncPlayers} from 'actions/players';
 import {updateGame, syncGames} from 'actions/games';
 import {syncGroups} from 'actions/groups';
 
@@ -35,6 +35,7 @@ function fetchGroups () {
 function setupSockets () {
   const socket = io.connect();
   socket.on('point', (data) => updateGame(data));
+  socket.on('players.new', (data) => addPlayer(data));
 }
 
 
