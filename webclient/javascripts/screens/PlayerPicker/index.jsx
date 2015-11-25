@@ -79,7 +79,11 @@ const PlayerPickerScreen = React.createClass({
     createGame({
       left: this.state.selected_left
     , right: this.state.selected_right
-    })
+    }).then(() => {
+      //TODO poor's man redirect :trollface:
+      window.location = '/#/scoreboard';
+      window.location.reload(true);
+    });
   }
 
 , renderSeparator() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import Player from 'components/Player';
+import {Link} from 'react-router';
 
 const GameResult = React.createClass({
   displayName: 'GameResult'
@@ -24,6 +25,10 @@ const GameResult = React.createClass({
         </div>
         <div className="game-result__winners animated bounceInUp">
           {this.renderWinners()}
+        </div>
+
+        <div className="game-result__new-game">
+          <Link to='player-picker'>New game</Link>
         </div>
       </div>
     );

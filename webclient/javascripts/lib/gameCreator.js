@@ -1,5 +1,6 @@
 import process from 'lib/processResponse';
 import store from 'store';
+import {addGame} from 'actions/games';
 
 export default function ({left, right}) {
   let type = left.length > 1 ? 'doubles' : 'singles';
@@ -18,5 +19,6 @@ export default function ({left, right}) {
     , 'Content-Type': 'application/json'
     }
   , body: JSON.stringify({type, left: left[0], right: right[0]})
-  }).then(process);
+  })
+    .then(process);
 }

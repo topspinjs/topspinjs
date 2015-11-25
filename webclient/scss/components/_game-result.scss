@@ -24,4 +24,18 @@
     text-align: center;
     margin-bottom: 40px;
   }
+
+  &__new-game a {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 48px;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    background: black;
+    color: white;
+    padding: 20px;
+    width: auto;
+    text-decoration: none;
+  }
 }

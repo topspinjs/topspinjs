@@ -28,7 +28,7 @@ export function createGame(payload) {
   , game: payload
   });
 
-  gameCreator(payload)
+  return gameCreator(payload)
     .then((response)=> store.dispatch({type: ADD_GAME_FULFILLED, game: response}))
     .catch((response)=> store.dispatch({type: ADD_GAME_REJECTED}))
 }
