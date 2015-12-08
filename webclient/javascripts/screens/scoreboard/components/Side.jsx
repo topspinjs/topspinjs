@@ -46,7 +46,7 @@ const ScoreBoardSide = React.createClass({
 , getClasses() {
     let classes = [];
 
-    classes.push('scoreboard__item');
+    classes.push('scoreboard__item ' + this.props.side);
 
     if (this.props.isDoubles) {
       classes.push('scoreboard__item--doubles');

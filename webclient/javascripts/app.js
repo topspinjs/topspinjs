@@ -27,6 +27,7 @@ var App = React.createClass({
     return (
       <div>
         <header>
+          <img src="/images/topspinjs.png"/>
           <ul>
             <li><Link to='player-picker'>New game</Link></li>
             <li><Link to='scoreboard'>Scoreboard</Link></li>

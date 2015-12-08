@@ -101,11 +101,13 @@ const PlayerPickerScreen = React.createClass({
           <Side
             selected={this.getSelectedPlayers('left')}
             toggleMenu={this.toggleMenu.bind(this, 'left')}
+            side='left'
           />
           {this.renderSeparator()}
           <Side
             selected={this.getSelectedPlayers('right')}
             toggleMenu={this.toggleMenu.bind(this, 'right')}
+            side='right'
           />
           <div className={`offscreen-menu slide-from-bottom ${this.state.isMenuOpen ? 'show' : 'hide'}`}>
             <Menu

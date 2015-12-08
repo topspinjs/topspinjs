@@ -6,9 +6,17 @@ const Side = React.createClass({
     return this.props.selected.map((player) => <Player nameSize='small' player={player}/>)
   }
 
+, getClasses() {
+    let classes = [];
+
+    classes.push('scoreboard__item ' + this.props.side);
+
+    return classes.join(' ');
+  }
+
 , render() {
     return (
-      <div className='scoreboard__item'>
+      <div className={this.getClasses()}>
         <div className="scoreboard__players">
           {this.renderPlayers()}
         </div>
